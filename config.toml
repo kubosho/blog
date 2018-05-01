@@ -1,0 +1,4 @@
+baseURL = "https://blog.kubosho.com/"
+languageCode = "ja-JP"
+title = "wkr."
+theme = "ananke"
