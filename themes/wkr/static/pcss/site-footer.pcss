@@ -1,0 +1,47 @@
+@import "./vars.pcss";
+
+.site-footer {
+  clear: both;
+  padding-top: calc(var(--space) * 8);
+  padding-bottom: calc(var(--space) * 8);
+}
+
+.site-footer .author {
+  position: relative;
+}
+@media (min-width: 90em) {
+  .site-footer .author {
+    display: flex;
+    align-items: center;
+    padding-left: calc(var(--space) * 4);
+    border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  }
+}
+
+.site-footer .author h1 {
+  margin: 0 0 calc(var(--space) * 2);
+  font-size: calc(var(--big-text-ratio) * 1rem);
+  line-height: 1;
+}
+@media (min-width: 90em) {
+  .site-footer .author h1 {
+    position: absolute;
+    right: calc(100% + calc(var(--space) * 6));
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+.site-footer .author-icon {
+  float: left;
+  margin-right: calc(var(--space) * 2);
+}
+
+.site-footer .author-name {
+  margin: 0;
+  margin-right: calc(var(--space) * 2);
+}
+
+.site-footer .author-description {
+  margin: 0;
+}

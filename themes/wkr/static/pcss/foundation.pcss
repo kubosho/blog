@@ -1,0 +1,85 @@
+@import "./vars.pcss";
+
+html {
+  font-size: calc(var(--text-ratio) * 1.1rem);
+}
+
+@media (min-width: 60em) {
+  html {
+    font-size: calc(var(--medium-text-ratio) * 0.9rem);
+  }
+}
+
+@media (min-width: 90em) {
+  html {
+    font-size: calc(var(--big-text-ratio) * 0.9rem);
+  }
+}
+
+@media (min-width: 120em) {
+  html {
+    font-size: 1vw;
+  }
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background-color: var(--color-bg--light);
+  font-family: "Hiragino Kaku Gothic ProN", YuGothic, "游ゴシック", Helvetica, sans-serif;
+  font-weight: 500;
+  font-feature-settings: "palt";
+  text-rendering: optimizeLegibility;
+}
+
+body > * {
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+@media (min-width: 60em) {
+  body > * {
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+}
+
+@media (min-width: 90em) {
+  body > * {
+    padding-right: 15%;
+    padding-left: 15%;
+  }
+}
+
+@media (min-width: 120em) {
+  body > * {
+    padding-right: 20%;
+    padding-left: 20%;
+  }
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+blockquote {
+  padding-left: calc(var(--space) * 2);
+  border-left: calc(var(--border-size) * 4) solid var(--color-main);
+}
+
+h1 {
+  color: var(--color-main);
+}
+
+pre code {
+  display: block;
+  padding: calc(var(--space) * 2);
+  background-color: var(--color-bg--dark);
+  color: var(--color-text--light);
+  font-family: 'Fira Code', Consolas, 'Courier New', monospace;
+}

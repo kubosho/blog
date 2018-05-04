@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+{{ partial "head.html" . }}
+
+<body>
+{{ partial "site-header.html" . }}
+
+<main class="site-contents">
+    <article class="entry">
+        <header class="entry-header">
+            <h1 class="entry-title">{{ .Title }}</h1>
+            <time datetime="{{ .PublishDate }}" class="entry-created-at">
+                {{ .PublishDate.Format "2006/01/02" }}
+            </time>
+        </header>
+        {{ .Content }}
+    </article>
+</main>
+
+{{ partial "site-footer.html" . }}
+</body>
+</html>

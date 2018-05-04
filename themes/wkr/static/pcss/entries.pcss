@@ -1,0 +1,39 @@
+@import "./vars.pcss";
+
+.entries {
+  padding: 0;
+  margin: 0;
+}
+
+.entries > li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(var(--space) * 6);
+}
+@media (min-width: 60em) {
+  .entries > li {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.entries .entry-title {
+  order: 2;
+  margin: 0;
+  font-size: calc(var(--big-text-ratio) * 1rem);
+}
+
+.entries .entry-created-at {
+  order: 1;
+  padding-left: calc(var(--space) * 2);
+  margin-right: calc(var(--space) * 6);
+  margin-bottom: calc(var(--space) * 2);
+  border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  color: var(--color-main);
+}
+@media (min-width: 60em) {
+  .entries .entry-created-at {
+    padding-left: calc(var(--space) * 4);
+    margin-bottom: 0;
+  }
+}
