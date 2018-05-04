@@ -23,7 +23,7 @@ Atoms（原子）は、UIを構成する基礎的な要素が該当します。
 フォームでいうと、画像で示すようにラベル・入力部分・ボタンの各要素がAtomsとなります。
 他の要素では、カラーパレットやフォント、アニメーションがAtomsに入ります。
 
-[f:id:kubosh0:20160707184103p:plain]
+![Atomsを指した図。フォームのラベル・入力フォーム・ボタンがAtomsとなる](/images/using-atomic-design/atoms.png)
 
 Atomsに振り分ける基準としては、**対象の要素が機能的にそれ以上分割できない** 場合、Atomsへ振り分けます。
 フォームで例えると、ラベルはそれ以上機能的に分割できません。
@@ -47,7 +47,7 @@ Moleculesになることで意味を持つ要素となります。
 たとえば、Atomsであるラベル・入力フォーム・登録ボタンという3つのコンポーネントがあってもそれら単体は意味をなしません。
 しかし、これらの要素を組み合わせることにより「ラベルで示したことに応じて、入力フォームに何かを書いて、登録ボタンを押す」という意味が示せるようになります。
 
-[f:id:kubosh0:20160707184113p:plain]
+![Moleculesを指した図。フォームのラベル・入力フォーム・ボタンをまとめたものがMoleculesとなる](/images/using-atomic-design/molecules.png)
 
 Moleculesはできるだけ単純にして、再利用性やUIの一貫性を高めます。
 
@@ -58,7 +58,7 @@ Organisms（有機体）は、AtomsやMolecules、また他のOrganismsを組み
 
 たとえば画像で示すようなヘッダーは「タイトル」というAtomsと、「ナビゲーション」「SNSのボタン群」というMoleculesが組み合わさって、ヘッダーというOrganismsになっています。
 
-[f:id:kubosh0:20160707184106p:plain]
+![Organismsを指した図。WebページのヘッダーやフッターなどがOrganismsとなる](/images/using-atomic-design/organisms.png)
 
 Organismsからそのページの特色が出やすくなります。
 
@@ -102,13 +102,13 @@ Atomic Designを適用するとセレクタの詳細度が平坦になるよう�
 
 次の画像は今回Atomic Designの考え方を使って作ったCSSの詳細度を示したグラフですが、割と平坦なグラフになっています。
 
-[f:id:kubosh0:20160707184110p:plain]
+![神獄のヴァルハラゲートのイベントページのCSSの詳細度を指した図。飛び出すところがあまりない平坦なグラフとなっている](/images/using-atomic-design/css-valhalla.png)
 
 またAtomic Designを採用しているAbemaTVのCSSも突然詳細度が上がることなく平坦なグラフです。
 ただこれは中の人になって分かったことですが、CSS Modulesの仕組み（css-loader）を取り入れているためCSSは各コンポーネントごとにスコープが閉じた状態で書くことができます。
 そのためセレクタの詳細度をあまり上げなくてもスタイル宣言をできるため、詳細度が抑えられています。
 
-[f:id:kubosh0:20160707184828p:plain]
+![AbemaTVのCSSの詳細度を指した図。急に飛び出していない平坦なグラフとなっている](/images/using-atomic-design/css-abematv.png)
 
 ## Atomic Designの欠点
 
