@@ -47,10 +47,10 @@ jobs:
           command: |
             git config --global user.email "ta2@o2p.jp"
             git config --global user.name "Shota Kubota"
+      - run: git add .
       - run:
           name: Change Git branch
           command: git checkout gh-pages
-      - run: git add .
       - run: git commit -m "[ci skip] published of Hugo generated files"
       - run: git push origin gh-pages
 
