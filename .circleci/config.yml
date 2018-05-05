@@ -48,11 +48,18 @@ jobs:
             git config --global user.email "ta2@o2p.jp"
             git config --global user.name "Shota Kubota"
       - run: git add .
+      - run: git commit -m "[ci skip] published of Hugo generated files"
       - run:
           name: Change Git branch
           command: git checkout gh-pages
-      - run: git commit -m "[ci skip] published of Hugo generated files"
-      - run: git push origin gh-pages
+      - run:
+          name: Push to gh-pages branch
+          command: git push origin gh-pages
+      - run:
+          name: Reset master branch
+          command: |
+            git checkout master
+            git reset --hard origin/master
 
 workflows:
   version: 2
