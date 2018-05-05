@@ -1,4 +1,4 @@
-baseURL = "https://kubosho.github.io/blog/"
+baseURL = "https://kubosho.github.io/blog"
 languageCode = "ja-JP"
 title = "wkr."
 theme = "wkr"
