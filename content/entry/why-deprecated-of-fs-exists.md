@@ -1,6 +1,8 @@
 ---
 title: "fs.exists()がdeprecatedになった理由"
 date: 2015-09-20T09:05:43+09:00
+categories: ["技術記事"]
+tags: ["Node.js"]
 ---
 
 ## はじめに

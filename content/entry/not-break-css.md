@@ -1,6 +1,8 @@
 ---
 title: "CSSを破綻させない"
 date: 2016-12-14T00:00:00+09:00
+categories: ["技術記事"]
+tags: ["Advent Calendar", "CSS"]
 ---
 
 12/3（土）に[CSSを破綻させない](https://builderscon.io/builderscon/tokyo/2016/session/720e29c6-9b11-46f3-adf4-f6f52e4fcbb9)という内容を[builderscon tokyo 2016](https://builderscon.io/builderscon/tokyo/2016)で話しました。

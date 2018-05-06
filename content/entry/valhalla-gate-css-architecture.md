@@ -1,7 +1,8 @@
 ---
 title: "神獄のヴァルハラゲートのCSS設計"
 date: 2014-12-09T18:34:34+09:00
-draft: true
+categories: ["技術記事"]
+tags: ["Advent Calendar", "CSS"]
 ---
 
 [CSS Architecture Advent Calendar 2014](http://www.adventar.org/calendars/337) 9日目の記事になります。

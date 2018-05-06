@@ -1,6 +1,8 @@
 ---
 title: "Atomic Designの考え方と利点・欠点"
 date: 2016-07-19T08:07:57+09:00
+categories: ["技術記事"]
+tags: ["Atomic Design"]
 ---
 
 Atomic Designはデザインシステムを作る方法論となります。

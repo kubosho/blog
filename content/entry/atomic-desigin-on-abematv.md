@@ -1,6 +1,8 @@
 ---
 title: "Atomic Designを実案件に導入して運用してみた結果はどうなのか"
 date: 2017-12-18T00:30:00+09:00
+categories: ["技術記事"]
+tags: ["Advent Calendar", "Atomic Design"]
 ---
 
 かつて[Atomic Designの考え方と利点・欠点](http://blog.kubosho.com/entry/using-atomic-design)という記事を書きました。
