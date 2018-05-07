@@ -4,6 +4,39 @@
 @import "./site-footer.pcss";
 @import "./entries.pcss";
 
+.entry .entry-title {
+  margin: 0;
+  font-size: calc(var(--big-text-ratio) * 1.5rem);
+}
+
+.entry p {
+  font-family: "Hiragino Mincho ProN", YuMincho, "游明朝", Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.entry blockquote,
+.entry blockquote > p {
+  font-family: "Hiragino Kaku Gothic ProN", YuGothic, "游ゴシック", Helvetica, sans-serif;
+}
+
+.entry .entry-tags {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entry-tags {
+  display: flex;
+}
+
+.entry-tags li {
+  margin-right: calc(var(--space) * 4);
+}
+
+.entry-tags li > a::before {
+  content: "#";
+}
+
 .entry-title {
   line-height: 1.1;
 }
@@ -27,19 +60,4 @@
     right: calc(100% + calc(var(--space) * 6));
     font-size: inherit;
   }
-}
-
-.entry .entry-title {
-  margin: 0;
-  font-size: calc(var(--big-text-ratio) * 1.5rem);
-}
-
-.entry p {
-  font-family: "Hiragino Mincho ProN", YuMincho, "游明朝", Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-.entry blockquote,
-.entry blockquote > p {
-  font-family: "Hiragino Kaku Gothic ProN", YuGothic, "游ゴシック", Helvetica, sans-serif;
 }

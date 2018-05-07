@@ -12,6 +12,11 @@
             <time datetime="{{ .PublishDate }}" class="entry-created-at">
                 {{ .PublishDate.Format "2006/01/02" }}
             </time>
+            <ul class="entry-tags">
+              {{ range .Params.tags }}
+                <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+              {{ end }}
+            </ul>
             {{ if .IsDraft }}<p style="color: #2196f3;">DRAFT</p>{{ end }}
         </header>
         {{ .Content }}
