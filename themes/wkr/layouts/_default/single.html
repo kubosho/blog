@@ -12,6 +12,7 @@
             <time datetime="{{ .PublishDate }}" class="entry-created-at">
                 {{ .PublishDate.Format "2006/01/02" }}
             </time>
+            {{ if .IsDraft }}<p style="color: #2196f3;">DRAFT</p>{{ end }}
         </header>
         {{ .Content }}
         {{ template "_internal/disqus.html" . }}
