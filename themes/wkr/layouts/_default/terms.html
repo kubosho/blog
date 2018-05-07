@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{{ partial "head.html" . }}
+
+<body>
+{{ partial "site-header.html" . }}
+
+<main class="site-contents">
+    {{ if .Data.Singular }}
+      <h1>{{ .Title }}</h1>
+    {{ end }}
+    <ul class="entries">
+        {{ range .Data.Pages }}
+            <li>
+                <h1 class="entry-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h1>
+            </li>
+        {{ end }}
+    </ul>
+</main>
+
+{{ partial "site-footer.html" . }}
+</body>
+</html>
