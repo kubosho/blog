@@ -92,8 +92,6 @@ pre code {
   line-height: 1;
 }
 .site-title a {
-  display: flex;
-  align-items: center;
   color: var(--color-text--light);
 }
 .site-title .author-icon {
