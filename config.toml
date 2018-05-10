@@ -3,3 +3,6 @@ languageCode = "ja-JP"
 title = "wkr."
 theme = "wkr"
 disqusShortname = "blog-kubosho"
+
+[params]
+twitter = "kubosho_"
