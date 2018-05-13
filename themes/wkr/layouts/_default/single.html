@@ -20,6 +20,7 @@
             {{ if .IsDraft }}<p style="color: #2196f3;">DRAFT</p>{{ end }}
         </header>
         {{ .Content }}
+        {{ partial "related.html" . }}
         {{ template "_internal/disqus.html" . }}
     </article>
 </main>
