@@ -118,8 +118,6 @@ pre code {
 }
 .site-footer {
   clear: both;
-  padding-top: calc(var(--space) * 8);
-  padding-bottom: calc(var(--space) * 8);
 }
 .site-footer .author {
   position: relative;
@@ -155,6 +153,24 @@ pre code {
 }
 .site-footer .author-description {
   margin: 0;
+}
+.site-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: calc(var(--space) * 2) 0;
+}
+.site-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.site-navigation .copyrights {
+  display: inline-block;
+  margin-right: calc(var(--space) * 2);
+}
+.site-navigation li + li {
+  margin-left: calc(var(--space) * 2);
 }
 .entries {
   padding: 0;

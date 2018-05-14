@@ -1,0 +1,23 @@
+@import "./vars.pcss";
+
+.site-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: calc(var(--space) * 2) 0;
+}
+
+.site-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-navigation .copyrights {
+  display: inline-block;
+  margin-right: calc(var(--space) * 2);
+}
+
+.site-navigation li + li {
+  margin-left: calc(var(--space) * 2);
+}
