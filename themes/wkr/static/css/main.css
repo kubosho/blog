@@ -205,10 +205,12 @@ pre code {
 }
 .entry-header {
   position: relative;
-  padding-left: calc(var(--space) * 4);
-  margin-right: calc(var(--space) * 8);
-  border-left: calc(var(--border-size) * 4) solid var(--color-main);
-  background-color: var(--color-bg);
+}
+@media (min-width: 90em) {
+  .entry-header {
+    padding-left: calc(var(--space) * 4);
+    border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  }
 }
 .entry-header .entry-created-at {
   display: block;
