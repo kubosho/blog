@@ -164,10 +164,16 @@ pre code {
 .entries > li {
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(var(--space) * 6);
+  margin-bottom: calc(var(--space) * 4);
 }
 @media (min-width: 60em) {
   .entries > li {
+    margin-bottom: calc(var(--space) * 4);
+  }
+}
+@media (min-width: 90em) {
+  .entries > li {
+    margin-bottom: calc(var(--space) * 6);
   }
 }
 .entries .entry-title {
