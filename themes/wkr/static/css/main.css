@@ -174,6 +174,7 @@ pre code {
 .entries .entry-title {
   margin: 0;
   font-size: calc(var(--big-text-ratio) * 1rem);
+  font-weight: 500;
 }
 .entries .entry-created-at {
   margin-bottom: calc(var(--space) * 2);
@@ -183,6 +184,16 @@ pre code {
 .entry .entry-title {
   margin: 0;
   font-size: calc(var(--big-text-ratio) * 1.5rem);
+  font-weight: 500;
+}
+.entry > h1,
+.entry > h2,
+.entry > h3,
+.entry > h4,
+.entry > h5,
+.entry > h6 {
+  color: var(--color-main);
+  font-weight: 700;
 }
 .entry img {
   max-width: 100%;
