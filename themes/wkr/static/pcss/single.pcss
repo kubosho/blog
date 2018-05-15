@@ -1,0 +1,52 @@
+@import "./vars.pcss";
+
+.entry .entry-header {
+  position: relative;
+}
+@media (min-width: 90em) {
+  .entry .entry-header {
+    padding-left: calc(var(--space) * 4);
+    border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  }
+}
+
+.entry .entry-header .entry-created-at {
+  display: block;
+  border-top: var(--border-size) solid var(--color-main);
+  font-size: calc(var(--text-ratio) * 0.9rem);
+}
+@media (min-width: 90em) {
+  .entry .entry-header .entry-created-at {
+    position: absolute;
+    top: 0;
+    right: calc(100% + calc(var(--space) * 6));
+    border-top: 0;
+    font-size: inherit;
+  }
+}
+
+.entry .entry-title {
+  margin: 0;
+  font-size: calc(var(--big-text-ratio) * 1.5rem);
+  font-weight: 500;
+}
+
+.entry > h1,
+.entry > h2,
+.entry > h3,
+.entry > h4,
+.entry > h5,
+.entry > h6 {
+  color: var(--color-main);
+  font-weight: 700;
+}
+
+.entry img {
+  max-width: 100%;
+}
+
+.entry .entry-tags {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

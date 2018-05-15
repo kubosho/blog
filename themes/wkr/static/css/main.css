@@ -181,6 +181,29 @@ pre code {
   color: var(--color-main);
   font-size: calc(var(--text-ratio) * 0.85rem);
 }
+.entry .entry-header {
+  position: relative;
+}
+@media (min-width: 90em) {
+  .entry .entry-header {
+    padding-left: calc(var(--space) * 4);
+    border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  }
+}
+.entry .entry-header .entry-created-at {
+  display: block;
+  border-top: var(--border-size) solid var(--color-main);
+  font-size: calc(var(--text-ratio) * 0.9rem);
+}
+@media (min-width: 90em) {
+  .entry .entry-header .entry-created-at {
+    position: absolute;
+    top: 0;
+    right: calc(100% + calc(var(--space) * 6));
+    border-top: 0;
+    font-size: inherit;
+  }
+}
 .entry .entry-title {
   margin: 0;
   font-size: calc(var(--big-text-ratio) * 1.5rem);
@@ -207,36 +230,18 @@ pre code {
   display: flex;
 }
 .entry-tags li {
-  margin-right: calc(var(--space) * 4);
+  margin-right: calc(var(--space) * 2);
+}
+@media (min-width: 90em) {
+  .entry-tags li {
+    margin-right: calc(var(--space) * 4);
+  }
 }
 .entry-tags li > a::before {
   content: "#";
 }
 .entry-title {
   line-height: 1.1;
-}
-.entry-header {
-  position: relative;
-}
-@media (min-width: 90em) {
-  .entry-header {
-    padding-left: calc(var(--space) * 4);
-    border-left: calc(var(--border-size) * 4) solid var(--color-main);
-  }
-}
-.entry-header .entry-created-at {
-  display: block;
-  border-top: var(--border-size) solid var(--color-main);
-  font-size: calc(var(--text-ratio) * 0.9rem);
-}
-@media (min-width: 90em) {
-  .entry-header .entry-created-at {
-    position: absolute;
-    top: 0;
-    right: calc(100% + calc(var(--space) * 6));
-    border-top: 0;
-    font-size: inherit;
-  }
 }
 .related-entries h1 {
   margin: 0 0 calc(var(--space) * 2);
