@@ -183,6 +183,7 @@ pre code {
 }
 .entry .entry-header {
   position: relative;
+  margin-bottom: calc(var(--space) * 8);
 }
 @media (min-width: 90em) {
   .entry .entry-header {
