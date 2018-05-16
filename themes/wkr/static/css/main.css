@@ -16,6 +16,8 @@
   --text-ratio: 1;
   --medium-text-ratio: calc((var(--text-ratio) + var(--ratio)) / 2);
   --big-text-ratio: calc(var(--text-ratio) * var(--ratio) / 1.2);
+
+  /* media width */
 }
 html {
   font-size: calc(var(--text-ratio) * 1.1rem);
@@ -25,12 +27,12 @@ html {
     font-size: calc(var(--medium-text-ratio) * 0.9rem);
   }
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   html {
     font-size: calc(var(--big-text-ratio) * 0.9rem);
   }
 }
-@media (min-width: 120em) {
+@media (min-width: 100em) {
   html {
     font-size: 1vw;
   }
@@ -55,13 +57,13 @@ body > * {
     padding-left: 10%;
   }
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   body > * {
     padding-right: 15%;
     padding-left: 15%;
   }
 }
-@media (min-width: 120em) {
+@media (min-width: 100em) {
   body > * {
     padding-right: 20%;
     padding-left: 20%;
@@ -167,7 +169,7 @@ pre code {
   flex-direction: column;
   margin-bottom: calc(var(--space) * 4);
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   .entries > li {
     margin-bottom: calc(var(--space) * 6);
   }
@@ -186,7 +188,7 @@ pre code {
   position: relative;
   margin-bottom: calc(var(--space) * 8);
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   .entry .entry-header {
     padding-left: calc(var(--space) * 4);
     border-left: calc(var(--border-size) * 4) solid var(--color-main);
@@ -197,7 +199,7 @@ pre code {
   border-top: var(--border-size) solid var(--color-main);
   font-size: calc(var(--text-ratio) * 0.9rem);
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   .entry .entry-header .entry-created-at {
     position: absolute;
     top: 0;
@@ -234,7 +236,7 @@ pre code {
 .entry-tags li {
   margin-right: calc(var(--space) * 2);
 }
-@media (min-width: 90em) {
+@media (min-width: 80em) {
   .entry-tags li {
     margin-right: calc(var(--space) * 4);
   }

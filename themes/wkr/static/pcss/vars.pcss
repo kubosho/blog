@@ -16,4 +16,11 @@
   --text-ratio: 1;
   --medium-text-ratio: calc((var(--text-ratio) + var(--ratio)) / 2);
   --big-text-ratio: calc(var(--text-ratio) * var(--ratio) / 1.2);
+
+  /* media width */
+  @custom-media --small-viewport (min-width: 40em);
+  @custom-media --medium-viewport (min-width: 60em);
+  @custom-media --large-viewport (min-width: 80em);
+  @custom-media --x-large-viewport (min-width: 100em);
+  @custom-media --xx-large-viewport (min-width: 120em);
 }

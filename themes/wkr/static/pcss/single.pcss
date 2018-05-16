@@ -4,7 +4,7 @@
   position: relative;
   margin-bottom: calc(var(--space) * 8);
 }
-@media (min-width: 90em) {
+@media (--large-viewport) {
   .entry .entry-header {
     padding-left: calc(var(--space) * 4);
     border-left: calc(var(--border-size) * 4) solid var(--color-main);
@@ -16,7 +16,7 @@
   border-top: var(--border-size) solid var(--color-main);
   font-size: calc(var(--text-ratio) * 0.9rem);
 }
-@media (min-width: 90em) {
+@media (--large-viewport) {
   .entry .entry-header .entry-created-at {
     position: absolute;
     top: 0;

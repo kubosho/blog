@@ -4,19 +4,19 @@ html {
   font-size: calc(var(--text-ratio) * 1.1rem);
 }
 
-@media (min-width: 60em) {
+@media (--medium-viewport) {
   html {
     font-size: calc(var(--medium-text-ratio) * 0.9rem);
   }
 }
 
-@media (min-width: 90em) {
+@media (--large-viewport) {
   html {
     font-size: calc(var(--big-text-ratio) * 0.9rem);
   }
 }
 
-@media (min-width: 120em) {
+@media (--x-large-viewport) {
   html {
     font-size: 1vw;
   }
@@ -38,21 +38,21 @@ body > * {
   padding-left: 5%;
 }
 
-@media (min-width: 60em) {
+@media (--medium-viewport) {
   body > * {
     padding-right: 10%;
     padding-left: 10%;
   }
 }
 
-@media (min-width: 90em) {
+@media (--large-viewport) {
   body > * {
     padding-right: 15%;
     padding-left: 15%;
   }
 }
 
-@media (min-width: 120em) {
+@media (--x-large-viewport) {
   body > * {
     padding-right: 20%;
     padding-left: 20%;
