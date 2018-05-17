@@ -114,7 +114,7 @@ pre code {
 .site-contents {
   margin: calc(var(--space) * 6) 0 calc(var(--space) * 12);
 }
-@media (min-width: 120em) {
+@media (min-width: 80em) {
   .site-contents {
     margin: calc(var(--space) * 12) 0 calc(var(--space) * 18);
   }
