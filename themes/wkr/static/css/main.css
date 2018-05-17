@@ -32,9 +32,9 @@ html {
     font-size: calc(var(--big-text-ratio) * 0.9rem);
   }
 }
-@media (min-width: 100em) {
+@media (min-width: 120em) {
   html {
-    font-size: 1vw;
+    font-size: 0.9vw;
   }
 }
 body {
