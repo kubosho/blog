@@ -7,7 +7,8 @@
 
 <main class="site-contents">
     <ul class="entries">
-        {{ range .Data.Pages }}
+        {{ $pages := where .Data.Pages "Type" "entry" }}
+        {{ range $pages }}
             <li>
                 <h1 class="entry-title">
                     <a href="{{ .Permalink }}">{{ .Title }}</a>
