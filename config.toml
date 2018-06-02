@@ -4,5 +4,9 @@ title = "wkr."
 theme = "wkr"
 disqusShortname = "blog-kubosho"
 
+[mediaTypes]
+  [mediaTypes."application/javascript"]
+    suffix = "mjs"
+
 [params]
 twitter = "kubosho_"
