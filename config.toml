@@ -9,4 +9,5 @@ disqusShortname = "blog-kubosho"
     suffix = "mjs"
 
 [params]
+ga = "UA-25380313-10"
 twitter = "kubosho_"
