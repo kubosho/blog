@@ -18,7 +18,7 @@
     <script src="https://platform.twitter.com/widgets.js" charset="utf-8" async></script>
     {{ if isset .Site.Params "ga" }}
       <script>
-        window.__gaId__ = '{{ .Site.Params.ga }}';
+          window.__gaId__ = '{{ .Site.Params.ga }}';
       </script>
       <script defer src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.ga }}"></script>
       <script defer src="{{ .Site.BaseURL }}/scripts/ga-entrypoint.mjs" type="module"></script>

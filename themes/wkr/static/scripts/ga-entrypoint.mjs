@@ -6,9 +6,9 @@ const optout = new GAOptout(storage);
 
 window.gaOptout = optout || {};
 
-function gtag(...args) {
+function gtag() {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+  window.dataLayer.push(arguments);
 }
 
 function gaInitialize() {
