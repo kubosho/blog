@@ -13,6 +13,7 @@ function gtag() {
 
 function gaInitialize() {
   if (optout.isGADisabled()) {
+    optout.gaId = gaId;
     optout.disableGA();
   }
 
