@@ -8,6 +8,10 @@ disqusShortname = "blog-kubosho"
   [mediaTypes."application/javascript"]
     suffix = "mjs"
 
+[outputFormats]
+  [outputFormats.RSS]
+    baseName = "feed"
+
 [params]
 ga = "UA-25380313-10"
 twitter = "kubosho_"
