@@ -149,6 +149,7 @@ pre code {
 }
 .site-navigation ul {
   list-style-type: none;
+  display: flex;
   padding: 0;
   margin: 0;
 }
@@ -157,7 +158,7 @@ pre code {
   margin-right: calc(var(--space) * 2);
 }
 .site-navigation li + li {
-  margin-left: calc(var(--space) * 2);
+  margin-left: calc(var(--space) * 4);
 }
 .entries {
   list-style-type: none;
