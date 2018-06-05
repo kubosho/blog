@@ -14,4 +14,5 @@ disqusShortname = "blog-kubosho"
 
 [params]
 ga = "UA-25380313-10"
+themecolor = "#003760"
 twitter = "kubosho_"
