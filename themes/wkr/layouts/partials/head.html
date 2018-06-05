@@ -7,6 +7,9 @@
     {{ end }}
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1.0,width=device-width">
+    {{ if isset .Site.Params "themecolor" }}
+        <meta name="theme-color" content="{{ .Site.Params.themecolor }}">
+    {{ end }}
     {{ partial "ogp.html" . }}
     {{ .Hugo.Generator }}
     {{ range .AlternativeOutputFormats -}}
