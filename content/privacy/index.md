@@ -6,6 +6,8 @@ layout: page
 ---
 
 <script>
+  const gaId = window.__gaId__ || '';
+
   function toggleGAOptoutStatus() {
     if (gaOptout.isGADisabled()) {
       gaOptout.enableGA();
@@ -23,6 +25,7 @@ layout: page
   }
 
   function onClickGAOptoutButton() {
+    gaOptout.gaId = gaId;
     toggleGAOptoutStatus();
     showGAOptoutStatus();
   }
