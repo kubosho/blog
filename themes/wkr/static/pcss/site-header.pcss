@@ -1,12 +1,10 @@
 @import "./vars.pcss";
 
 .site-title {
-  font-size: calc(var(--big-text-ratio) * 1rem);
-  line-height: 1;
-}
-
-.site-title a {
   color: var(--color-text--light);
+  font-size: calc(var(--big-text-ratio) * 1rem);
+  font-weight: bold;
+  line-height: 1;
 }
 
 .site-title .author-icon {
@@ -14,11 +12,16 @@
 }
 
 .site-header {
+  display: flex;
+  align-content: center;
   padding-top: calc(var(--space) * 4);
   padding-bottom: calc(var(--space) * 4);
   background-color: var(--color-main);
 }
 
-.site-header .site-title {
+.site-header h1 {
+  display: inline-block;
   margin: 0;
+  font-weight: bold;
+  line-height: 0;
 }

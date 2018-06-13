@@ -1,5 +1,9 @@
 <header class="site-header">
-    <h1 class="site-title">
-        <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-    </h1>
+    {{ if .IsHome }}
+        <h1>
+            <a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </h1>
+    {{ else }}
+        <a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    {{ end }}
 </header>

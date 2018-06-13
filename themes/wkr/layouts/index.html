@@ -10,9 +10,9 @@
         {{ $pages := where .Data.Pages "Type" "entry" }}
         {{ range $pages }}
             <li>
-                <h1 class="entry-title">
+                <h2 class="entry-title">
                     <a href="{{ .Permalink }}">{{ .Title }}</a>
-                </h1>
+                </h2>
                 <time datetime="{{ .PublishDate }}" class="entry-created-at">
                     {{ .PublishDate.Format "2006/01/02" }}
                 </time>
