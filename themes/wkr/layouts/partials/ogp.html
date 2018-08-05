@@ -1,9 +1,11 @@
 {{ if .IsHome }}
     <meta itemprop="name" content="{{ .Title }}">
     <meta property="og:site_name" content="{{ .Title }}">
+    <meta property="og:title" content="{{ .Title }}">
 {{ else }}
-    <meta itemprop="name" content="{{ .Title }} – {{ .Site.Title }}">
-    <meta property="og:site_name" content="{{ .Title }} – {{ .Site.Title }}">
+    <meta itemprop="name" content="{{ .Site.Title }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:title" content="{{ .Title }} – {{ .Site.Title }}">
 {{ end }}
 <meta property="og:type" content="blog">
 <meta property="og:url" content="{{ .Permalink }}">
