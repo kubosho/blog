@@ -16,8 +16,10 @@
   "homepage": "https://github.com/kubosho/blog#readme",
   "private": "true",
   "dependencies": {
+    "axios": "^0.18.0",
     "contentful": "^7.0.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "option-t": "^18.0.3"
   },
   "devDependencies": {
     "ava": "^1.0.1",
