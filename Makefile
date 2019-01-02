@@ -43,7 +43,7 @@ clean: clean_dist ## Clean up before building the code.
 
 .PHONY: clean_dist
 clean_dist:
-	$(RIMRAF) $(DIST_DIR)/*.*
+	$(RIMRAF) $(DIST_DIR)/*
 
 ####################################
 # Test
