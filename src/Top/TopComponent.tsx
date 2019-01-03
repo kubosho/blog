@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { EntryValue } from '../entryValue';
+import { HeaderComponent } from '../Application/HeaderComponent';
 
 interface Props {
   entries: EntryValue[];
@@ -7,11 +8,17 @@ interface Props {
 
 export const TopComponent = ({ entries }: Props): JSX.Element => (
   <React.Fragment>
-    {entries.map(entry => (
-      <section key={entry.id}>
-        <h1>{entry.title}</h1>
-        {entry.content}
-      </section>
-    ))}
+    <HeaderComponent />
+
+    {entries.map(entry => {
+      const c = entry.content;
+
+      return (
+        <section key={entry.id}>
+          <h1>{entry.title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: c }} />
+        </section>
+      );
+    })}
   </React.Fragment>
 );
