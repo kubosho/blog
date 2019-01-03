@@ -1,11 +1,16 @@
-import * as contentful from 'contentful';
+import { config as dotenvConfig } from 'dotenv';
+import * as express from 'express';
+import { createContentfulClient } from './entriesGateway';
+import { route } from './routing';
 
-const client = contentful.createClient({
-  space: '',
-  accessToken: '',
-});
+function main() {
+  dotenvConfig();
 
-client
-  .getEntries()
-  .then(res => console.log(res.items))
-  .catch(err => console.log(err));
+  const app = express();
+  const client = createContentfulClient(process.env.SPACE, process.env.ACCESS_TOKEN);
+
+  route(app, client);
+  app.listen(8080);
+}
+
+main();
