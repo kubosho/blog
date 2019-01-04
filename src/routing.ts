@@ -6,7 +6,7 @@ import { TopViewString } from './Top/TopViewString';
 import { View } from './View';
 
 export function route(app: express.Express, client: ContentfulClientApi) {
-  app.use('/assets', express.static('assets'));
+  app.use('/assets', express.static(`${__dirname}/assets`));
 
   app.get('/', async (req, res) => {
     try {

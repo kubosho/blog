@@ -9,6 +9,7 @@ export function View({ body, title }: ViewParam) {
     <html>
       <head>
         <title>${title}</title>
+        <link href="/assets/styles/index.css" rel="stylesheet">
       </head>
 
       <body>
