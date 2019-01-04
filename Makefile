@@ -3,11 +3,13 @@ NPM_BIN_DIR := $(NPM_MOD_DIR)/.bin
 
 SRC_DIR := $(CURDIR)/src
 DIST_DIR := $(CURDIR)/dist
+ASSETS_DIR := $(SRC_DIR)/Assets
 
 ####################################
 # Command definition
 ####################################
 AVA := $(NPM_BIN_DIR)/ava
+POSTCSS := $(NPM_BIN_DIR)/postcss
 PRETTIER := $(NPM_BIN_DIR)/prettier
 RIMRAF := $(NPM_BIN_DIR)/rimraf
 TSC = $(NPM_BIN_DIR)/tsc
@@ -15,6 +17,7 @@ TSLINT := $(NPM_BIN_DIR)/tslint
 
 ifeq ($(OS),Windows_NT)
 	AVA = $(NPM_BIN_DIR)/ava.cmd
+	POSTCSS := $(NPM_BIN_DIR)/postcss.cmd
 	PRETTIER := $(NPM_BIN_DIR)/prettier.cmd
 	RIMRAF = $(NPM_BIN_DIR)/rimraf.cmd
 	TSC = $(NPM_BIN_DIR)/tsc.cmd
@@ -84,5 +87,12 @@ check_format: format
 # Build
 ####################################
 .PHONY: build
-build: clean ## Building scripts and stylesheets.
+build: clean build_script build_style ## Building scripts and stylesheets.
+
+.PHONY: build_script
+build_script:
 	$(TSC)
+
+.PHONY: build_style
+build_style:
+	$(POSTCSS) $(ASSETS_DIR)/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
