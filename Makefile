@@ -3,7 +3,7 @@ NPM_BIN_DIR := $(NPM_MOD_DIR)/.bin
 
 SRC_DIR := $(CURDIR)/src
 DIST_DIR := $(CURDIR)/dist
-ASSETS_DIR := $(SRC_DIR)/Assets
+ASSETS_DIR := $(CURDIR)/assets
 
 ####################################
 # Command definition
@@ -95,4 +95,4 @@ build_script:
 
 .PHONY: build_style
 build_style:
-	$(POSTCSS) $(ASSETS_DIR)/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
+	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
