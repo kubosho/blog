@@ -35,6 +35,7 @@
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "ava": "^1.0.1",
+    "cpx": "^1.5.0",
     "postcss-cli": "^6.1.0",
     "postcss-import": "^12.0.1",
     "prettier": "^1.15.3",
