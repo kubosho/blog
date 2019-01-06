@@ -7,6 +7,7 @@ export interface EntryPlainObject {
   id: string;
   title: string;
   updatedAt: string;
+  excerpt?: string;
   publishedAt?: string;
   slug?: string;
 }
@@ -17,6 +18,7 @@ export class EntryValue {
   readonly id: string;
   readonly title: string;
   readonly updatedAt: string;
+  readonly excerpt?: string;
   readonly publishedAt?: string;
   readonly slug?: string;
 
@@ -26,6 +28,7 @@ export class EntryValue {
     this.id = unwrapMaybe(param.id);
     this.title = unwrapMaybe(param.title);
     this.updatedAt = unwrapMaybe(param.updatedAt);
+    this.excerpt = orForMaybe(param.excerpt, null);
     this.publishedAt = orForMaybe(param.updatedAt, null);
     this.slug = orForMaybe(param.slug, null);
   }
