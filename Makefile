@@ -9,6 +9,7 @@ ASSETS_DIR := $(CURDIR)/assets
 # Command definition
 ####################################
 AVA := $(NPM_BIN_DIR)/ava
+CPX := $(NPM_BIN_DIR)/cpx
 POSTCSS := $(NPM_BIN_DIR)/postcss
 PRETTIER := $(NPM_BIN_DIR)/prettier
 RIMRAF := $(NPM_BIN_DIR)/rimraf
@@ -17,6 +18,7 @@ TSLINT := $(NPM_BIN_DIR)/tslint
 
 ifeq ($(OS),Windows_NT)
 	AVA = $(NPM_BIN_DIR)/ava.cmd
+	CPX = $(NPM_BIN_DIR)/cpx.cmd
 	POSTCSS := $(NPM_BIN_DIR)/postcss.cmd
 	PRETTIER := $(NPM_BIN_DIR)/prettier.cmd
 	RIMRAF = $(NPM_BIN_DIR)/rimraf.cmd
@@ -84,10 +86,20 @@ check_format: format
 	git diff --exit-code
 
 ####################################
+# Copy
+####################################
+.PHONY: copy
+copy: copy_images ## Copy files from assets/ to dist/.
+
+.PHONY: copy_images
+copy_images:
+	$(CPX) "$(ASSETS_DIR)/images/*.*" $(DIST_DIR)/assets/images
+
+####################################
 # Build
 ####################################
 .PHONY: build
-build: clean build_script build_style ## Building scripts and stylesheets.
+build: clean build_script build_style copy ## Building scripts and stylesheets.
 
 .PHONY: build_script
 build_script:
