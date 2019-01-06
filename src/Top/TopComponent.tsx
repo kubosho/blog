@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { EntryValue } from '../entryValue';
 import { HeaderComponent } from '../Application/HeaderComponent';
+import { FooterComponent } from '../Application/FooterComponent';
 
 interface Props {
   entries: EntryValue[];
@@ -20,5 +21,7 @@ export const TopComponent = ({ entries }: Props): JSX.Element => (
         </section>
       );
     })}
+
+    <FooterComponent />
   </React.Fragment>
 );
