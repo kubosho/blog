@@ -15,7 +15,7 @@ export const TopComponent = ({ entries }: Props): JSX.Element => (
       const c = entry.content;
 
       return (
-        <section key={entry.id}>
+        <section className="com-Top-TopComponent-article" key={entry.id}>
           <h1>{entry.title}</h1>
           <div dangerouslySetInnerHTML={{ __html: c }} />
         </section>
