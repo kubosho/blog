@@ -12,12 +12,12 @@ export const TopComponent = ({ entries }: Props): JSX.Element => (
     <HeaderComponent />
 
     {entries.map(entry => {
-      const c = entry.content;
+      const ex = entry.excerpt;
 
       return (
         <section className="com-Top-TopComponent-article" key={entry.id}>
           <h1>{entry.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: c }} />
+          <p dangerouslySetInnerHTML={{ __html: ex }} />
         </section>
       );
     })}
