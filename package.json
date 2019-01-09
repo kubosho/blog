@@ -1,20 +1,23 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "To use this boilerplate you need to have PHP 5.5.9 or newer. On Windows you also need to have [composer](https://getcomposer.org) installed.",
-  "main": "index.js",
+  "name": "@kubosho_/blog",
+  "version": "2.0.0",
+  "description": "I'm kubosho",
+  "main": "dist/server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubosho/blog.git"
   },
-  "keywords": [],
+  "keywords": [
+    "blog",
+    "personal-blog"
+  ],
   "author": "kubosho",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kubosho/blog/issues"
   },
   "homepage": "https://github.com/kubosho/blog#readme",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "contentful": "^7.0.5",
