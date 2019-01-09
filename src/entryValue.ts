@@ -19,7 +19,6 @@ export class EntryValue {
   readonly id: string;
   readonly title: string;
   readonly updatedAt: string;
-  readonly publishedAt?: string;
   readonly slug?: string;
 
   constructor(param: EntryPlainObject) {
@@ -29,7 +28,6 @@ export class EntryValue {
     this.id = unwrapMaybe(param.id);
     this.title = unwrapMaybe(param.title);
     this.updatedAt = unwrapMaybe(param.updatedAt);
-    this.publishedAt = orForMaybe(param.updatedAt, null);
     this.slug = orForMaybe(param.slug, null);
   }
 }

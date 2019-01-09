@@ -13,21 +13,23 @@ export class EntriesGateway {
 
   async fetch(): Promise<EntryValue[]> {
     const entries: EntryCollection<EntryPlainObject> = await this._client.getEntries();
-    const result = entries.items.map(item => {
+    const r = entries.items.map(item => {
       const content = marked(item.fields.content);
+      const createdAt = unwrapOrFromUndefinable(item.fields.publishedAt, item.fields.createdAt);
       const excerpt = createExcerptText(item.fields);
 
       const o = {
         ...item.sys,
         ...item.fields,
         content,
+        createdAt,
         excerpt,
       };
       const ev = new EntryValue(o);
       return ev;
     });
 
-    return result;
+    return r;
   }
 }
 
