@@ -108,3 +108,8 @@ build_script:
 .PHONY: build_style
 build_style:
 	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
+
+####################################
+# For CI command
+####################################
+ci: lint check_format build
