@@ -1,0 +1,2 @@
+status = ["continuous-integration/travis-ci/push"]
+timeout_sec = 600 # 10 mins.
