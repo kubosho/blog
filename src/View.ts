@@ -4,6 +4,8 @@ interface ViewParam {
 }
 
 export function View({ body, title }: ViewParam) {
+  const { gaId } = process.env;
+
   return `
     <!DOCTYPE html>
     <html>
@@ -12,6 +14,11 @@ export function View({ body, title }: ViewParam) {
         <title>${title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="/assets/styles/index.css" rel="stylesheet">
+        <script>
+          window.__gaId__ = ${gaId};
+        </script>
+        <script defer src="https://www.googletagmanager.com/gtag/js?id=${gaId}"></script>
+        <script defer src="/assets/scripts/gaEntryPoint.mjs" type="module"></script>
       </head>
 
       <body>

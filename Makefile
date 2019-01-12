@@ -89,11 +89,15 @@ check_format: format
 # Copy
 ####################################
 .PHONY: copy
-copy: copy_images ## Copy files from assets/ to dist/.
+copy: copy_images copy_scripts ## Copy files from assets/ to dist/.
 
 .PHONY: copy_images
 copy_images:
 	$(CPX) "$(ASSETS_DIR)/images/*.*" $(DIST_DIR)/assets/images
+
+.PHONY: copy_scripts
+copy_scripts:
+	$(CPX) "$(ASSETS_DIR)/scripts/*.*" $(DIST_DIR)/assets/scripts
 
 ####################################
 # Build
