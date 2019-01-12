@@ -11,8 +11,8 @@ interface EntryPageParams {
   slug: string;
 }
 
-export function entryRouteHander(app: express.Express, entries: EntryValue[]) {
-  app.get(ENTRY_PATH, (req, res) => {
+export function entryRouteHander(router: express.Router, entries: EntryValue[]) {
+  router.get(ENTRY_PATH, (req, res) => {
     const params: EntryPageParams = req.params;
     const entry: Undefinable<EntryValue> = entries.find(e => e.slug === params.slug);
 

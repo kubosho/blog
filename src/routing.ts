@@ -1,13 +1,14 @@
-import * as express from 'express';
+import { Router } from 'express';
 
-import { ASSETS_PATH } from './Application/paths';
 import { entryRouteHander } from './Entry/EntryRouteHandler';
 import { topRouteHander } from './Top/TopRouteHandler';
 import { EntryValue } from './entryValue';
 
-export async function route(app: express.Express, entries: EntryValue[]) {
-  app.use(ASSETS_PATH, express.static(`${__dirname}${ASSETS_PATH}`));
+export function route(entries: EntryValue[]): Router {
+  const router = Router();
 
-  topRouteHander(app, entries);
-  entryRouteHander(app, entries);
+  topRouteHander(router, entries);
+  entryRouteHander(router, entries);
+
+  return router;
 }
