@@ -6,8 +6,8 @@ import { TOP_PATH } from '../Application/paths';
 import { View } from '../View';
 import { TopViewString } from './TopViewString';
 
-export function topRouteHander(app: express.Express, entries: EntryValue[]) {
-  app.get(TOP_PATH, (req, res) => {
+export function topRouteHander(router: express.Router, entries: EntryValue[]) {
+  router.get(TOP_PATH, (req, res) => {
     const body = TopViewString(entries);
 
     res.send(
