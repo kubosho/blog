@@ -13,12 +13,14 @@ export const TopComponent = ({ entries }: Props): JSX.Element => (
     <HeaderComponent />
 
     {entries.map(entry => {
-      const ex = entry.excerpt;
+      const { excerpt, id, slug, title } = entry;
 
       return (
-        <section className="com-Top-TopComponent-article" key={entry.id}>
-          <h1>{entry.title}</h1>
-          <p dangerouslySetInnerHTML={{ __html: ex }} />
+        <section className="com-Top-TopComponent-article" key={id}>
+          <h1>
+            <a href={`/entry/${slug}`}>{title}</a>
+          </h1>
+          <p dangerouslySetInnerHTML={{ __html: excerpt }} />
         </section>
       );
     })}
