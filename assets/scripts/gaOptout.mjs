@@ -34,7 +34,7 @@ export class GAOptout {
     }
   }
 
-  isGADisabled() {
+  enabled() {
     return (
       window[this.gaOptoutKey] || this._storage.getKey() !== null || this._isDoNotTrackEnabled()
     );

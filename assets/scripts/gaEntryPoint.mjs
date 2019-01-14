@@ -12,7 +12,7 @@ function gaInitialize() {
 
   window.gaOptout = optout || {};
 
-  if (optout.isGADisabled()) {
+  if (optout.enabled()) {
     optout.gaId = gaId;
     optout.enable();
   }
