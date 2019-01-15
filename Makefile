@@ -114,6 +114,13 @@ build_style:
 	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
 
 ####################################
+# Serve
+####################################
+.PHONY: serve
+serve: ## Launch preview server.
+	node $(DIST_DIR)/server.js
+
+####################################
 # For CI command
 ####################################
 ci: lint check_format build
