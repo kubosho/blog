@@ -12,6 +12,7 @@ export const TopComponent = ({ entries }: Props): JSX.Element => (
   <React.Fragment>
     <HeaderComponent />
 
+    <h2>最近の記事</h2>
     {entries.map(entry => {
       const { excerpt, id, slug, title } = entry;
 
