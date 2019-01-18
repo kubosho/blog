@@ -123,4 +123,4 @@ serve: ## Launch preview server.
 ####################################
 # For CI command
 ####################################
-ci: lint check_format build
+ci: lint check_format test build
