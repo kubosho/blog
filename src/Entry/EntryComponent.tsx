@@ -15,7 +15,7 @@ export const EntryComponent = ({ entry }: Props): JSX.Element => {
     <React.Fragment>
       <HeaderComponent />
       <article className="com-Entry-EntryComponent-article" key={entry.id}>
-        <h1>{entry.title}</h1>
+        <h1 className="com-Entry-EntryComponent-article__title">{entry.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: c }} />
       </article>
       <FooterComponent />
