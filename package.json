@@ -19,7 +19,7 @@
   "homepage": "https://github.com/kubosho/blog#readme",
   "private": true,
   "dependencies": {
-    "contentful": "7.0.6",
+    "contentful": "7.1.0",
     "dotenv": "6.2.0",
     "express": "4.16.4",
     "marked": "0.6.0",
