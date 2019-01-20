@@ -3,7 +3,7 @@ type TimeZone = 'Asia/Tokyo';
 
 export function convertHumanReadableJST(dateTime: Date): string {
   const dt = createDateTime('ja', 'Asia/Tokyo');
-  const t = dt.format(dateTime);
+  const t = dt.format(dateTime).replace(/-/g, '/');
 
   return t;
 }
