@@ -3,7 +3,7 @@ import * as express from 'express';
 import { EntryValue } from '../entryValue';
 import { SITE_TITLE } from '../Application/constants';
 import { TOP_PATH } from '../Application/paths';
-import { View } from '../View';
+import { ViewString } from '../Application/ViewString';
 import { TopViewString } from './TopViewString';
 
 export function topRouteHander(router: express.Router, entries: EntryValue[]) {
@@ -11,7 +11,7 @@ export function topRouteHander(router: express.Router, entries: EntryValue[]) {
     const body = TopViewString(entries);
 
     res.send(
-      View({
+      ViewString({
         body,
         title: SITE_TITLE,
       }),

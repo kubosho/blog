@@ -3,7 +3,7 @@ import { Undefinable, isUndefined } from 'option-t/lib/Undefinable/Undefinable';
 
 import { SITE_TITLE } from '../Application/constants';
 import { ENTRY_PATH } from '../Application/paths';
-import { View } from '../View';
+import { ViewString } from '../Application/ViewString';
 import { EntryValue } from '../entryValue';
 import { EntryViewString } from './EntryViewString';
 
@@ -20,7 +20,7 @@ export function entryRouteHander(router: express.Router, entries: EntryValue[]) 
 
     if (!isUndefined(entry)) {
       res.send(
-        View({
+        ViewString({
           body,
           title: `${entry.title} · ${SITE_TITLE}`,
         }),

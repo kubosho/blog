@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { SITE_TITLE } from '../Application/constants';
 import { PRIVACY_PATH } from '../Application/paths';
-import { View } from '../View';
+import { ViewString } from '../Application/ViewString';
 import { PrivacyViewString } from './PrivacyViewString';
 
 export function privacyRouteHander(router: Router) {
@@ -10,7 +10,7 @@ export function privacyRouteHander(router: Router) {
     const body = PrivacyViewString();
 
     res.send(
-      View({
+      ViewString({
         body,
         title: SITE_TITLE,
       }),
