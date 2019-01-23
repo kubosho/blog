@@ -116,9 +116,9 @@ build_style:
 ####################################
 # Serve
 ####################################
-.PHONY: serve
-serve: ## Launch preview server.
-	node $(DIST_DIR)/server.js
+.PHONY: serve_local
+serve_local: ## Launch preview server.
+	node $(DIST_DIR)/localEntryPoint.js
 
 ####################################
 # For CI command
