@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { isNull } from 'option-t/lib/Nullable/Nullable';
 import { Undefinable, isUndefined } from 'option-t/lib/Undefinable/Undefinable';
 
 import { SITE_TITLE } from './Application/constants';
@@ -7,16 +8,35 @@ import { ViewString } from './Application/ViewString';
 import { TopViewString } from './Top/TopViewString';
 import { EntryViewString } from './Entry/EntryViewString';
 import { PrivacyViewString } from './Privacy/PrivacyViewString';
+import { EntryContext } from './entryContext';
 import { EntryValue } from './entryValue';
 
 interface EntryPageParams {
   slug: string;
 }
 
-export function route(entries: EntryValue[]): Router {
-  const router = Router();
+async function getEntries(context: EntryContext): Promise<EntryValue[]> {
+  const { gateway: entryGateway, store: entryStore } = new EntryContext();
 
-  router.get(TOP_PATH, (req, res) => {
+  let entries = entryStore.getEntries();
+
+  if (isNull(entries)) {
+    try {
+      entries = await entryGateway.fetchAllEntries();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  return entries;
+}
+
+export function route(): Router {
+  const router = Router();
+  const entryContext = new EntryContext();
+
+  router.get(TOP_PATH, async (req, res) => {
+    const entries = await getEntries(entryContext);
     const body = TopViewString(entries);
 
     res.send(
@@ -27,8 +47,9 @@ export function route(entries: EntryValue[]): Router {
     );
   });
 
-  router.get(ENTRY_PATH, (req, res) => {
+  router.get(ENTRY_PATH, async (req, res) => {
     const params: EntryPageParams = req.params;
+    const entries = await getEntries(entryContext);
     const entry: Undefinable<EntryValue> = entries.find(e => e.slug === params.slug);
 
     const body = EntryViewString(entry);
