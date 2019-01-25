@@ -2,7 +2,7 @@
   "name": "@kubosho_/blog",
   "version": "2.0.0",
   "description": "I'm kubosho",
-  "main": "dist/server.js",
+  "main": "dist/localEntryPoint.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubosho/blog.git"
