@@ -6,7 +6,7 @@ import { route } from './routing';
 
 const PORT = process.env.PORT || 8080;
 
-function main() {
+export function localEntryPoint() {
   dotenvConfig();
 
   const app = express();
@@ -18,5 +18,3 @@ function main() {
   // tslint:disable-next-line no-console
   console.log(`The server is running at port:${PORT}`);
 }
-
-main();
