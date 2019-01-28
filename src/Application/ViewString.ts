@@ -3,7 +3,7 @@ interface ViewParam {
   title: string;
 }
 
-export function View({ body, title }: ViewParam) {
+export function ViewString({ body, title }: ViewParam) {
   const { gaId } = process.env;
 
   return `
