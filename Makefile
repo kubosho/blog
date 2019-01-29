@@ -117,15 +117,8 @@ build_style:
 # Serve
 ####################################
 .PHONY: serve
-serve: RELEASE_CHANNEL ?= development ## Launch preview server.
 serve:
-ifeq ($(RELEASE_CHANNEL),production)
-	node $(DIST_DIR)/index.js RELEASE_CHANNEL=production
-else ifeq ($(RELEASE_CHANNEL),development)
-	node $(DIST_DIR)/index.js RELEASE_CHANNEL=development
-else ifeq ($(RELEASE_CHANNEL),local)
-	node $(DIST_DIR)/index.js RELEASE_CHANNEL=local
-endif
+	node $(DIST_DIR)/index.js
 
 ####################################
 # For CI command
