@@ -103,7 +103,7 @@ copy_scripts:
 # Build
 ####################################
 .PHONY: build
-build: clean build_script build_style copy ## Building scripts and stylesheets.
+build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
 
 .PHONY: build_script
 build_script:
@@ -112,6 +112,17 @@ build_script:
 .PHONY: build_style
 build_style:
 	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
+
+.PHONE: build_nginx
+build_nginx: PORT ?= 80
+build_nginx: PROXY_PASS ?= http://localhost:8080
+build_nginx: NGINX_WORKERS ?= 1
+build_nginx:
+	PORT=$(PORT) \
+	PROXY_PASS=$(PROXY_PASS) \
+	NGINX_WORKERS=$(NGINX_WORKERS) \
+	OUT_DIR=$(CURDIR)/nginx \
+	go run $(CURDIR)/tools/nginx/generate_nginx_conf.go
 
 ####################################
 # Serve
