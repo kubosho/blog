@@ -1,6 +1,8 @@
 ### Project
 
 dist/
+nginx/
+!tools/nginx/
 .env
 
 ### Node

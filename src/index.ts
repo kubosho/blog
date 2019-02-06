@@ -6,7 +6,7 @@ import { route } from './routing';
 
 const PORT = process.env.PORT || 8080;
 
-export function main() {
+function main() {
   dotenvConfig();
 
   const app = express();
@@ -23,4 +23,4 @@ export function main() {
   return app;
 }
 
-const entryPoint = main();
+main();
