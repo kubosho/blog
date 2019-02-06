@@ -24,6 +24,14 @@ func main() {
 		WorkerProcesses: wp,
 	}
 
+	if _, err := os.Stat(outdir); os.IsNotExist(err) {
+		err := os.Mkdir(outdir, 0755)
+
+		if err != nil {
+			log.Fatalln(err.Error())
+		}
+	}
+
 	filename := outdir + "/nginx.conf"
 	cwd, err := os.Getwd()
 	if err != nil {
