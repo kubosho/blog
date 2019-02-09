@@ -24,8 +24,8 @@
     "express": "4.16.4",
     "marked": "0.6.0",
     "option-t": "18.0.3",
-    "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react": "16.8.1",
+    "react-dom": "16.8.1"
   },
   "devDependencies": {
     "@types/dotenv": "6.1.0",
