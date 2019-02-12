@@ -15,7 +15,10 @@ interface EntryPageParams {
 }
 
 export const EntryHandler = async (req: Request, res: Response) => {
-  const entries = await getEntries(entryContext);
+  await getEntries(entryContext);
+
+  const entries = entryContext.store.getEntries();
+
   const params: EntryPageParams = req.params;
   const entry: Undefinable<EntryValue> = entries.find(e => e.slug === params.slug);
   const title = `${entry.title} · ${SITE_TITLE}`;

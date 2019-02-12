@@ -9,7 +9,9 @@ import { entryContext } from '../entryContext';
 import { TopComponent } from './TopComponent';
 
 export const TopHandler = async (_req: Request, res: Response) => {
-  const entries = await getEntries(entryContext);
+  await getEntries(entryContext);
+
+  const entries = entryContext.store.getEntries();
 
   const component = (
     <FoundationComponent title={SITE_TITLE}>
