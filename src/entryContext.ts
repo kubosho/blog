@@ -18,3 +18,5 @@ export class EntryContext {
     return this._store;
   }
 }
+
+export const entryContext = new EntryContext();
