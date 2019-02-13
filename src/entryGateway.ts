@@ -1,48 +1,73 @@
 import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
-import { ContentfulClientApi, EntryCollection } from 'contentful';
+import { ContentfulClientApi, Entry, EntryCollection } from 'contentful';
 import * as marked from 'marked';
 
 import { createContentfulClient } from './contentfulClient';
-import { EntryPlainObject, EntryValue } from './entryValue';
+import { ContentfulCustomEntryFields, EntryPlainObject, EntryValue } from './entryValue';
+
+type EntriesCache = WeakMap<
+  EntryCollection<ContentfulCustomEntryFields>,
+  ReadonlyArray<EntryValue>
+>;
 
 export class EntryGateway {
+  private _entriesCache: EntriesCache;
   private _client: ContentfulClientApi;
 
-  constructor(client: ContentfulClientApi) {
+  constructor(client: ContentfulClientApi, entriesCache: EntriesCache) {
+    this._entriesCache = entriesCache;
     this._client = client;
   }
 
-  async fetchAllEntries(): Promise<EntryValue[]> {
-    const entries: EntryCollection<EntryPlainObject> = await this._client.getEntries();
-    const r = entries.items.map(item => {
-      const { sys, fields } = item;
+  async fetchAllEntries(): Promise<ReadonlyArray<EntryValue>> {
+    let res: EntryCollection<ContentfulCustomEntryFields> = null;
 
-      const content = marked(fields.content);
-      const createdAt = unwrapOrFromUndefinable(fields.publishedAt, sys.createdAt);
-      const excerpt = createExcerptText(fields);
+    try {
+      res = await this._client.getEntries();
+    } catch (err) {
+      // tslint:disable-next-line no-console
+      console.error(err);
+      return;
+    }
 
-      const o = {
-        ...sys,
-        ...fields,
-        content,
-        createdAt,
-        excerpt,
-      };
-      const ev = new EntryValue(o);
-      return ev;
-    });
+    if (this._entriesCache.has(res)) {
+      return this._entriesCache.get(res);
+    }
 
-    return r;
+    const values = res.items.map(createEntryValue);
+    this._entriesCache.set(res, values);
+
+    return values;
   }
 }
 
 export function createEntryGateway(): EntryGateway {
-  const c = createContentfulClient(process.env.SPACE, process.env.ACCESS_TOKEN);
-  const g = new EntryGateway(c);
+  const client = createContentfulClient(process.env.SPACE, process.env.ACCESS_TOKEN);
+  const cache = new WeakMap();
+  const g = new EntryGateway(client, cache);
   return g;
 }
 
-function createExcerptText(fields: EntryPlainObject): string {
+function createEntryValue(item: Entry<ContentfulCustomEntryFields>): EntryValue {
+  const { sys, fields } = item;
+
+  const content = marked(fields.content);
+  const createdAt = unwrapOrFromUndefinable(fields.publishedAt, sys.createdAt);
+  const excerpt = createExcerptText(fields);
+
+  const o: EntryPlainObject = {
+    ...sys,
+    ...fields,
+    content,
+    createdAt,
+    excerpt,
+  };
+  const v = new EntryValue(o);
+
+  return v;
+}
+
+function createExcerptText(fields: ContentfulCustomEntryFields): string {
   const excerpt = fields.excerpt;
   const contentExcerpt = stripParagraphElement(marked(fields.content.split('\n')[0]));
 
