@@ -3,9 +3,9 @@ import * as React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
 import { Undefinable } from 'option-t/lib/Undefinable/Undefinable';
 
-import { FoundationComponent } from '../Application/FoundationComponent';
-import { SITE_TITLE } from '../Application/constants';
-import { EntryValue } from '../entryValue';
+import { FoundationComponent } from '../../Application/FoundationComponent';
+import { SITE_TITLE } from '../../Application/constants';
+import { EntryValue } from '../../Entry/entryValue';
 import { getEntries } from '../getEntries';
 import { entryContext } from '../entryContext';
 import { EntryComponent } from './EntryComponent';

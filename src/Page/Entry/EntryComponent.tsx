@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { EntryValue } from '../entryValue';
-import { HeaderComponent } from '../Application/HeaderComponent';
-import { FooterComponent } from '../Application/FooterComponent';
-import { convertHumanReadableJST } from '../convertHumanReadableTime';
+import { EntryValue } from '../../entryValue';
+import { HeaderComponent } from '../../Application/HeaderComponent';
+import { FooterComponent } from '../../Application/FooterComponent';
+import { convertHumanReadableJST } from '../../convertHumanReadableTime';
 
 interface Props {
   entry: EntryValue;
