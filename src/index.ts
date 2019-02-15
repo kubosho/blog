@@ -2,7 +2,7 @@ import { config as dotenvConfig } from 'dotenv';
 import * as express from 'express';
 
 import { ASSETS_PATH } from './Application/paths';
-import { route } from './routing';
+import { route } from './Application/routing';
 
 const PORT = process.env.PORT || 8080;
 
