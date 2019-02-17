@@ -25,7 +25,9 @@
     "marked": "0.6.0",
     "option-t": "18.2.0",
     "react": "16.8.1",
-    "react-dom": "16.8.1"
+    "react-dom": "16.8.1",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@types/dotenv": "6.1.0",
@@ -33,6 +35,7 @@
     "@types/marked": "0.6.0",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
+    "@types/react-redux": "^7.0.1",
     "@types/sinon": "7.0.5",
     "ava": "1.2.1",
     "cpx": "1.5.0",
