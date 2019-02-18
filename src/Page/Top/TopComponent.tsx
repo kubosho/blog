@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { EntryValue } from '../../entryValue';
+import { EntryValue } from '../../Entry/entryValue';
 import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
 import { convertHumanReadableJST } from '../../convertHumanReadableTime';
 
 interface Props {
-  entries: EntryValue[];
+  entries: Array<EntryValue>;
 }
 
 export const TopComponent = ({ entries }: Props): JSX.Element => (
