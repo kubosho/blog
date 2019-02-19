@@ -23,7 +23,7 @@
     "dotenv": "6.2.0",
     "express": "4.16.4",
     "marked": "0.6.0",
-    "option-t": "18.0.3",
+    "option-t": "18.2.0",
     "react": "16.8.1",
     "react-dom": "16.8.1"
   },
