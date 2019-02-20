@@ -1,23 +1,39 @@
 import { Request, Response } from 'express';
 import * as React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { createOk, createErr } from 'option-t/lib/PlainResult/Result';
 
 import { FoundationComponent } from '../../Application/FoundationComponent';
 import { SITE_TITLE } from '../../Application/constants';
-import { getEntries } from '../getEntries';
-import { entryContext } from '../entryContext';
-import { TopComponent } from './TopComponent';
+import { EntryValue } from '../../Entry/entryValue';
+import { createEntryGateway } from '../../Entry/entryGateway';
+import { appStore } from '../../appStore';
+import { addEntries } from './topAction';
+import { TopContainer } from './TopContainer';
 
 export const TopHandler = async (_req: Request, res: Response) => {
-  await getEntries(entryContext);
+  const gateway = createEntryGateway();
+  let entries: ReadonlyArray<EntryValue>;
 
-  const entries = entryContext.store.getEntries();
+  appStore.subscribe(() => {
+    const component = (
+      <Provider store={appStore}>
+        <FoundationComponent title={SITE_TITLE}>
+          <TopContainer />
+        </FoundationComponent>
+      </Provider>
+    );
 
-  const component = (
-    <FoundationComponent title={SITE_TITLE}>
-      <TopComponent entries={entries} />
-    </FoundationComponent>
-  );
+    renderToNodeStream(component).pipe(res);
+  });
 
-  renderToNodeStream(component).pipe(res);
+  try {
+    entries = await gateway.fetchAllEntries();
+    appStore.dispatch(addEntries(createOk(entries)));
+  } catch (err) {
+    const error = new Error(err);
+    appStore.dispatch(addEntries(createErr(error)));
+    return;
+  }
 };
