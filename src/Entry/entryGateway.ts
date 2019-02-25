@@ -1,6 +1,7 @@
 import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
 import { ContentfulClientApi, Entry, EntryCollection } from 'contentful';
-import * as marked from 'marked';
+// @ts-ignore
+import { default as marked } from 'marked';
 
 import { createContentfulClient } from '../contentfulClient';
 import { ContentfulCustomEntryFields, EntryPlainObject, EntryValue } from './entryValue';
