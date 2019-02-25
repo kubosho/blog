@@ -9,6 +9,7 @@ ASSETS_DIR := $(CURDIR)/assets
 # Command definition
 ####################################
 AVA := $(NPM_BIN_DIR)/ava
+BABEL := $(NPM_BIN_DIR)/babel
 CPX := $(NPM_BIN_DIR)/cpx
 POSTCSS := $(NPM_BIN_DIR)/postcss
 PRETTIER := $(NPM_BIN_DIR)/prettier
@@ -18,6 +19,7 @@ TSLINT := $(NPM_BIN_DIR)/tslint
 
 ifeq ($(OS),Windows_NT)
 	AVA = $(NPM_BIN_DIR)/ava.cmd
+	BABEL = $(NPM_BIN_DIR)/babel.cmd
 	CPX = $(NPM_BIN_DIR)/cpx.cmd
 	POSTCSS := $(NPM_BIN_DIR)/postcss.cmd
 	PRETTIER := $(NPM_BIN_DIR)/prettier.cmd
@@ -108,6 +110,13 @@ build: clean build_script build_style build_nginx copy ## Building scripts and s
 .PHONY: build_script
 build_script:
 	$(TSC)
+	$(BABEL) $(DIST_DIR)/*.js --out-dir $(DIST_DIR)
+	$(BABEL) $(DIST_DIR)/Application/*.js --out-dir $(DIST_DIR)/Application/
+	$(BABEL) $(DIST_DIR)/Entry/*.js --out-dir $(DIST_DIR)/Entry/
+	$(BABEL) $(DIST_DIR)/Page/Entry/*.js --out-dir $(DIST_DIR)/Page/Entry/
+	$(BABEL) $(DIST_DIR)/Page/Privacy/*.js --out-dir $(DIST_DIR)/Page/Privacy/
+	$(BABEL) $(DIST_DIR)/Page/Top/*.js --out-dir $(DIST_DIR)/Page/Top/
+	$(BABEL) $(DIST_DIR)/Router/*.js --out-dir $(DIST_DIR)/Router/
 
 .PHONY: build_style
 build_style:
