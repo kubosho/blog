@@ -112,6 +112,7 @@ build_script:
 	$(TSC)
 	$(BABEL) $(DIST_DIR)/*.js --out-dir $(DIST_DIR)
 	$(BABEL) $(DIST_DIR)/Application/*.js --out-dir $(DIST_DIR)/Application/
+	$(BABEL) $(DIST_DIR)/Foundation/*.js --out-dir $(DIST_DIR)/Foundation/
 	$(BABEL) $(DIST_DIR)/Entry/*.js --out-dir $(DIST_DIR)/Entry/
 	$(BABEL) $(DIST_DIR)/Page/Entry/*.js --out-dir $(DIST_DIR)/Page/Entry/
 	$(BABEL) $(DIST_DIR)/Page/Privacy/*.js --out-dir $(DIST_DIR)/Page/Privacy/
