@@ -5,11 +5,11 @@ import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
 import { convertHumanReadableJST } from '../../convertHumanReadableTime';
 
-interface Props {
-  entries: Array<EntryValue>;
+export interface TopComponentProps {
+  entries: ReadonlyArray<EntryValue>;
 }
 
-export const TopComponent = ({ entries }: Props): JSX.Element => (
+export const TopComponent = ({ entries }: TopComponentProps): JSX.Element => (
   <React.Fragment>
     <HeaderComponent />
 
