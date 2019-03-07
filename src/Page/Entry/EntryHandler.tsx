@@ -1,33 +1,36 @@
-import { Request, Response } from 'express';
 import * as React from 'react';
-import { renderToNodeStream } from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { Undefinable } from 'option-t/lib/Undefinable/Undefinable';
+import { Context } from 'universal-router';
 
-import { FoundationComponent } from '../../Application/FoundationComponent';
+import { FoundationContainer } from '../../Foundation/FoundationContainer';
 import { SITE_TITLE } from '../../Application/constants';
 import { EntryValue } from '../../Entry/entryValue';
-import { getEntries } from '../getEntries';
-import { entryContext } from '../entryContext';
+import { entryGateway } from '../entryContext';
 import { EntryComponent } from './EntryComponent';
 
 interface EntryPageParams {
   slug: string;
 }
 
-export const EntryHandler = async (req: Request, res: Response) => {
-  await getEntries(entryContext);
+export const EntryHandler = async (context: Context): Promise<string> => {
+  let entries: ReadonlyArray<EntryValue>;
 
-  const entries = entryContext.store.getEntries();
+  try {
+    entries = await entryGateway.fetchAllEntries();
+  } catch (err) {
+    throw new Error(err);
+  }
 
-  const params: EntryPageParams = req.params;
+  const params: EntryPageParams = context.params;
   const entry: Undefinable<EntryValue> = entries.find(e => e.slug === params.slug);
   const title = `${entry.title} · ${SITE_TITLE}`;
-
   const component = (
-    <FoundationComponent title={title}>
+    <FoundationContainer title={title}>
       <EntryComponent entry={entry} />
-    </FoundationComponent>
+    </FoundationContainer>
   );
 
-  renderToNodeStream(component).pipe(res);
+  const r = renderToString(component);
+  return r;
 };

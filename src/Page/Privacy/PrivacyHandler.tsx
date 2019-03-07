@@ -1,17 +1,17 @@
-import { Request, Response } from 'express';
 import * as React from 'react';
-import { renderToNodeStream } from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 
-import { FoundationComponent } from '../../Application/FoundationComponent';
+import { FoundationContainer } from '../../Foundation/FoundationContainer';
 import { SITE_TITLE } from '../../Application/constants';
 import { PrivacyComponent } from './PrivacyComponent';
 
-export const PrivacyHandler = async (_req: Request, res: Response) => {
+export const PrivacyHandler = async () => {
   const component = (
-    <FoundationComponent title={SITE_TITLE}>
+    <FoundationContainer title={SITE_TITLE}>
       <PrivacyComponent />
-    </FoundationComponent>
+    </FoundationContainer>
   );
 
-  renderToNodeStream(component).pipe(res);
+  const r = renderToString(component);
+  return r;
 };
