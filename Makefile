@@ -108,16 +108,11 @@ copy_scripts:
 build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
 
 .PHONY: build_script
+build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.js
+build_script: BUILD_TARGETS := $(wildcard $(FILES))
 build_script:
 	$(TSC)
-	$(BABEL) $(DIST_DIR)/*.js --out-dir $(DIST_DIR)
-	$(BABEL) $(DIST_DIR)/Application/*.js --out-dir $(DIST_DIR)/Application/
-	$(BABEL) $(DIST_DIR)/Foundation/*.js --out-dir $(DIST_DIR)/Foundation/
-	$(BABEL) $(DIST_DIR)/Entry/*.js --out-dir $(DIST_DIR)/Entry/
-	$(BABEL) $(DIST_DIR)/Page/Entry/*.js --out-dir $(DIST_DIR)/Page/Entry/
-	$(BABEL) $(DIST_DIR)/Page/Privacy/*.js --out-dir $(DIST_DIR)/Page/Privacy/
-	$(BABEL) $(DIST_DIR)/Page/Top/*.js --out-dir $(DIST_DIR)/Page/Top/
-	$(BABEL) $(DIST_DIR)/Router/*.js --out-dir $(DIST_DIR)/Router/
+	$(foreach target,$(BUILD_TARGETS),$(BABEL) $(target) --out-dir $(dir $(target));)
 
 .PHONY: build_style
 build_style:
