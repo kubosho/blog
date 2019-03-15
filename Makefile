@@ -53,17 +53,6 @@ clean_dist:
 	$(RIMRAF) $(DIST_DIR)/*
 
 ####################################
-# Test
-####################################
-.PHONY: test
-test: ## Execute test cases.
-	$(AVA)
-
-.PHONY: update_snapshots
-update_snapshots:
-	$(AVA) --update-snapshots
-
-####################################
 # Linter
 ####################################
 .PHONY: lint
@@ -139,4 +128,4 @@ serve:
 ####################################
 # For CI command
 ####################################
-ci: lint check_format test build
+ci: lint check_format build
