@@ -1,26 +1,31 @@
+import { Nullable, isNull } from 'option-t/lib/Nullable/Nullable';
 import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
 import { ContentfulClientApi, Entry, EntryCollection } from 'contentful';
 // @ts-ignore
 import { default as marked } from 'marked';
 
-import { createContentfulClient } from '../contentfulClient';
+import { Memoization } from '../Application/memoization';
 import { ContentfulCustomEntryFields, EntryPlainObject, EntryValue } from './entryValue';
 
-type EntriesCache = WeakMap<
+type EntriesMemoization = Memoization<
   EntryCollection<ContentfulCustomEntryFields>,
   ReadonlyArray<EntryValue>
 >;
 
-export class EntryGateway {
-  private _entriesCache: EntriesCache;
-  private _client: ContentfulClientApi;
+export interface EntryGateway {
+  fetchAllEntries(): Promise<Nullable<ReadonlyArray<EntryValue>>>;
+}
 
-  constructor(client: ContentfulClientApi, entriesCache: EntriesCache) {
-    this._entriesCache = entriesCache;
+class EntryGatewayImpl {
+  private _client: ContentfulClientApi;
+  private _memoize: EntriesMemoization;
+
+  constructor(client: ContentfulClientApi, memoize: EntriesMemoization) {
     this._client = client;
+    this._memoize = memoize;
   }
 
-  async fetchAllEntries(): Promise<ReadonlyArray<EntryValue>> {
+  async fetchAllEntries(): Promise<Nullable<ReadonlyArray<EntryValue>>> {
     let res: EntryCollection<ContentfulCustomEntryFields> = null;
 
     try {
@@ -31,21 +36,22 @@ export class EntryGateway {
       return;
     }
 
-    if (this._entriesCache.has(res)) {
-      return this._entriesCache.get(res);
-    }
+    let values = this._memoize.get(res);
 
-    const values = res.items.map(createEntryValue);
-    this._entriesCache.set(res, values);
+    if (isNull(values)) {
+      values = res.items.map(createEntryValue);
+      this._memoize.set(res, values);
+    }
 
     return values;
   }
 }
 
-export function createEntryGateway(): EntryGateway {
-  const client = createContentfulClient(process.env.SPACE, process.env.ACCESS_TOKEN);
-  const cache = new WeakMap();
-  const g = new EntryGateway(client, cache);
+export function createEntryGateway(
+  client: ContentfulClientApi,
+  memoize: EntriesMemoization,
+): EntryGateway {
+  const g = new EntryGatewayImpl(client, memoize);
   return g;
 }
 
