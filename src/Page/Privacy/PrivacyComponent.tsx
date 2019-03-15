@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { HeaderComponent } from '../Application/HeaderComponent';
-import { FooterComponent } from '../Application/FooterComponent';
+import { HeaderComponent } from '../../Application/HeaderComponent';
+import { FooterComponent } from '../../Application/FooterComponent';
 import { OptoutText } from './OptoutText';
 import { PrivacyText } from './PrivacyText';
 

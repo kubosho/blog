@@ -1,5 +1,14 @@
 import { unwrapMaybe } from 'option-t/lib/Maybe/unwrap';
 
+export interface ContentfulCustomEntryFields {
+  content: string;
+  excerpt: string;
+  slug: string;
+  tags: Array<string>;
+  title: string;
+  publishedAt?: string;
+}
+
 export interface EntryPlainObject {
   content: string;
   createdAt: string;

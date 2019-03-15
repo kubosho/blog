@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import { EntryValue } from '../entryValue';
-import { HeaderComponent } from '../Application/HeaderComponent';
-import { FooterComponent } from '../Application/FooterComponent';
-import { convertHumanReadableJST } from '../convertHumanReadableTime';
+import { EntryValue } from '../../Entry/entryValue';
+import { HeaderComponent } from '../../Application/HeaderComponent';
+import { FooterComponent } from '../../Application/FooterComponent';
+import { convertHumanReadableJST } from '../../convertHumanReadableTime';
 
-interface Props {
-  entries: EntryValue[];
+export interface TopComponentProps {
+  entries: ReadonlyArray<EntryValue>;
 }
 
-export const TopComponent = ({ entries }: Props): JSX.Element => (
+export const TopComponent = ({ entries }: TopComponentProps): JSX.Element => (
   <React.Fragment>
     <HeaderComponent />
 

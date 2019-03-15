@@ -9,6 +9,7 @@ ASSETS_DIR := $(CURDIR)/assets
 # Command definition
 ####################################
 AVA := $(NPM_BIN_DIR)/ava
+BABEL := $(NPM_BIN_DIR)/babel
 CPX := $(NPM_BIN_DIR)/cpx
 POSTCSS := $(NPM_BIN_DIR)/postcss
 PRETTIER := $(NPM_BIN_DIR)/prettier
@@ -18,6 +19,7 @@ TSLINT := $(NPM_BIN_DIR)/tslint
 
 ifeq ($(OS),Windows_NT)
 	AVA = $(NPM_BIN_DIR)/ava.cmd
+	BABEL = $(NPM_BIN_DIR)/babel.cmd
 	CPX = $(NPM_BIN_DIR)/cpx.cmd
 	POSTCSS := $(NPM_BIN_DIR)/postcss.cmd
 	PRETTIER := $(NPM_BIN_DIR)/prettier.cmd
@@ -49,17 +51,6 @@ clean: clean_dist ## Clean up before building the code.
 .PHONY: clean_dist
 clean_dist:
 	$(RIMRAF) $(DIST_DIR)/*
-
-####################################
-# Test
-####################################
-.PHONY: test
-test: ## Execute test cases.
-	$(AVA)
-
-.PHONY: update_snapshots
-update_snapshots:
-	$(AVA) --update-snapshots
 
 ####################################
 # Linter
@@ -106,8 +97,11 @@ copy_scripts:
 build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
 
 .PHONY: build_script
+build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.js
+build_script: BUILD_TARGETS := $(wildcard $(FILES))
 build_script:
 	$(TSC)
+	$(foreach target,$(BUILD_TARGETS),$(BABEL) $(target) --out-dir $(dir $(target));)
 
 .PHONY: build_style
 build_style:
@@ -134,4 +128,4 @@ serve:
 ####################################
 # For CI command
 ####################################
-ci: lint check_format test build
+ci: lint check_format build
