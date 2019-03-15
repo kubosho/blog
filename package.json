@@ -21,7 +21,6 @@
   "dependencies": {
     "contentful": "7.2.0",
     "dotenv": "6.2.0",
-    "express": "4.16.4",
     "marked": "0.6.0",
     "option-t": "18.2.0",
     "react": "16.8.1",
@@ -36,7 +35,6 @@
     "@babel/core": "^7.3.3",
     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@types/dotenv": "6.1.0",
-    "@types/express": "4.16.1",
     "@types/marked": "0.6.0",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
