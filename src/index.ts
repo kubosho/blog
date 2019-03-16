@@ -1,4 +1,3 @@
-import { config as dotenvConfig } from 'dotenv';
 import { ServerResponse, createServer, IncomingMessage } from 'http';
 import { extname as getExtName } from 'path';
 import { parse as parseURL } from 'url';
@@ -11,8 +10,6 @@ import { renderAsset } from './renderAsset';
 const PORT = process.env.PORT || 8080;
 
 function main() {
-  dotenvConfig();
-
   const server = createServer();
   const router = createRouter(routes);
 

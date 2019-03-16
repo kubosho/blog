@@ -123,7 +123,7 @@ build_nginx:
 ####################################
 .PHONY: serve
 serve:
-	node $(DIST_DIR)/index.js
+	node --require dotenv/config $(DIST_DIR)/index.js
 
 ####################################
 # For CI command
