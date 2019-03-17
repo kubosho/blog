@@ -6,7 +6,7 @@ import { Context } from 'universal-router';
 import { FoundationContainer } from '../../Foundation/FoundationContainer';
 import { SITE_TITLE } from '../../Application/constants';
 import { EntryValue } from '../../Entry/entryValue';
-import { entryGateway } from '../entryContext';
+import { entryGateway } from '../../Entry/entryContext';
 import { EntryComponent } from './EntryComponent';
 
 interface EntryPageParams {
