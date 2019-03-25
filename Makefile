@@ -48,6 +48,12 @@ init: ## Install dependencies.
 .PHONY: clean
 clean: clean_dist ## Clean up before building the code.
 
+.PHONY: clean_for_test
+clean_for_test:
+	$(RIMRAF) \
+	{$(SRC_DIR)/*.js,$(SRC_DIR)/**/*.js,$(SRC_DIR)/**/**/*.js} \
+	{!$(SRC_DIR)/test_*.js,!$(SRC_DIR)/**/test_*.js,!$(SRC_DIR)/**/**/test_*.js}
+
 .PHONY: clean_dist
 clean_dist:
 	$(RIMRAF) $(DIST_DIR)/*
@@ -56,11 +62,11 @@ clean_dist:
 # Test
 ####################################
 .PHONY: test
-test: ## Execute test cases.
+test: clean_for_test build_script_for_test ## Execute test cases.
 	$(AVA)
 
 .PHONY: update_snapshots
-update_snapshots:
+update_snapshots: clean_for_test build_script_for_test
 	$(AVA) --update-snapshots
 
 ####################################
@@ -112,7 +118,14 @@ build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.
 build_script: BUILD_TARGETS := $(wildcard $(FILES))
 build_script:
 	$(TSC)
-	$(foreach target,$(BUILD_TARGETS),$(BABEL) $(target) --out-dir $(dir $(target));)
+	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
+
+.PHONY: build_script_for_test
+build_script_for_test: FILES := $(SRC_DIR)/*.js $(SRC_DIR)/**/*.js $(SRC_DIR)/**/**/*.js
+build_script_for_test: BUILD_TARGETS := $(wildcard $(FILES))
+build_script_for_test:
+	$(TSC) --project tsconfig_test.json
+	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
 
 .PHONY: build_style
 build_style:
