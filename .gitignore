@@ -1,5 +1,11 @@
 ### Project
 
+src/*.js
+src/**/*.js
+src/**/**/*.js
+!src/test_*.js
+!src/**/test_*.js
+!src/**/**/test_*.js
 dist/
 nginx/
 !tools/nginx/
