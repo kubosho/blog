@@ -48,9 +48,67 @@ init: ## Install dependencies.
 .PHONY: clean
 clean: clean_dist ## Clean up before building the code.
 
+.PHONY: clean_for_test
+clean_for_test:
+	$(RIMRAF) \
+	{$(SRC_DIR)/*.js,$(SRC_DIR)/**/*.js,$(SRC_DIR)/**/**/*.js} \
+	{!$(SRC_DIR)/test_*.js,!$(SRC_DIR)/**/test_*.js,!$(SRC_DIR)/**/**/test_*.js}
+
 .PHONY: clean_dist
 clean_dist:
 	$(RIMRAF) $(DIST_DIR)/*
+
+####################################
+# Build
+####################################
+.PHONY: build
+build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
+
+.PHONY: build_script
+build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.js
+build_script: BUILD_TARGETS := $(wildcard $(FILES))
+build_script:
+	$(TSC)
+	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
+
+.PHONY: compile_typescript_for_test
+compile_typescript_for_test:
+	$(TSC) --project tsconfig_test.json
+
+.PHONY: build_script_for_test
+build_script_for_test: FILES := $(SRC_DIR)/*.js $(SRC_DIR)/**/*.js $(SRC_DIR)/**/**/*.js
+build_script_for_test: BUILD_TARGETS := $(wildcard $(FILES))
+build_script_for_test:
+	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
+
+.PHONY: build_style
+build_style:
+	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
+
+.PHONE: build_nginx
+build_nginx: PORT ?= 80
+build_nginx: PROXY_PASS ?= http://localhost:8080
+build_nginx: NGINX_WORKERS ?= 1
+build_nginx:
+	PORT=$(PORT) \
+	PROXY_PASS=$(PROXY_PASS) \
+	NGINX_WORKERS=$(NGINX_WORKERS) \
+	OUT_DIR=$(CURDIR)/nginx \
+	go run $(CURDIR)/tools/nginx/generate_nginx_conf.go
+
+####################################
+# Test
+####################################
+.PHONY: test
+test: ## Execute test cases.
+	$(MAKE) clean_for_test && \
+	$(MAKE) compile_typescript_for_test && \
+	$(MAKE) build_script_for_test && \
+	$(AVA)
+
+.PHONY: update_snapshots
+update_snapshots: clean_for_test build_script_for_test
+	$(AVA) --update-snapshots
 
 ####################################
 # Linter
@@ -91,41 +149,8 @@ copy_scripts:
 	$(CPX) "$(ASSETS_DIR)/scripts/*.*" $(DIST_DIR)/assets/scripts
 
 ####################################
-# Build
-####################################
-.PHONY: build
-build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
-
-.PHONY: build_script
-build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.js
-build_script: BUILD_TARGETS := $(wildcard $(FILES))
-build_script:
-	$(TSC)
-	$(foreach target,$(BUILD_TARGETS),$(BABEL) $(target) --out-dir $(dir $(target));)
-
-.PHONY: build_style
-build_style:
-	$(POSTCSS) $(ASSETS_DIR)/styles/index.pcss --config $(CURDIR)/postcss.config.js --output $(DIST_DIR)/assets/styles/index.css
-
-.PHONE: build_nginx
-build_nginx: PORT ?= 80
-build_nginx: PROXY_PASS ?= http://localhost:8080
-build_nginx: NGINX_WORKERS ?= 1
-build_nginx:
-	PORT=$(PORT) \
-	PROXY_PASS=$(PROXY_PASS) \
-	NGINX_WORKERS=$(NGINX_WORKERS) \
-	OUT_DIR=$(CURDIR)/nginx \
-	go run $(CURDIR)/tools/nginx/generate_nginx_conf.go
-
-####################################
 # Serve
 ####################################
 .PHONY: serve
 serve:
 	node --require dotenv/config $(DIST_DIR)/index.js
-
-####################################
-# For CI command
-####################################
-ci: lint check_format build

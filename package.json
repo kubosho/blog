@@ -34,17 +34,42 @@
     "@babel/cli": "7.2.3",
     "@babel/core": "7.4.0",
     "@babel/plugin-transform-modules-commonjs": "7.4.0",
+    "@babel/preset-react": "^7.0.0",
     "@types/dotenv": "6.1.0",
     "@types/marked": "0.6.3",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
     "@types/react-redux": "7.0.5",
+    "ava": "1.2.1",
     "cpx": "1.5.0",
     "postcss-cli": "6.1.2",
     "postcss-import": "12.0.1",
     "prettier": "1.16.4",
+    "react-test-renderer": "^16.8.4",
     "rimraf": "2.6.3",
+    "sinon": "7.2.3",
     "tslint": "5.14.0",
     "typescript": "3.3.4000"
+  },
+  "ava": {
+    "files": [
+      "./src/**/__tests__/*.{js,jsx}"
+    ],
+    "cache": true,
+    "compileEnhancements": false,
+    "failFast": false,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "babel": {
+      "extensions": [
+        "js",
+        "jsx"
+      ],
+      "testOptions": {
+        "presets": [
+          "@babel/preset-react"
+        ]
+      }
+    }
   }
 }
