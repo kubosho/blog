@@ -22,8 +22,15 @@ before_install:
     - which yarn
     - echo $PATH
 
-script:
-    - make ci
+jobs:
+    include:
+        - stage: Check code style
+          script:
+              - make lint -j
+              - make check_format -j
+        - stage: Test
+          script:
+              - make test -j
 
 cache:
     yarn: true
