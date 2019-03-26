@@ -152,4 +152,4 @@ serve:
 ####################################
 # For CI command
 ####################################
-ci: lint check_format test build
+ci: check_format lint test
