@@ -3,7 +3,7 @@ dist: xenial
 language: node_js
 
 node_js:
-    - '11'
+    - "11"
 
 env:
     - YARNPKG_VERSION=1.12.3
@@ -23,7 +23,7 @@ before_install:
     - echo $PATH
 
 script:
-    - make ci -j
+    - make ci
 
 cache:
     yarn: true
