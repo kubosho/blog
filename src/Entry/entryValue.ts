@@ -20,6 +20,16 @@ export interface EntryResponse {
   publishedAt?: string;
 }
 
+export interface EntryPlainObject {
+  content: string;
+  excerpt: string;
+  id: string;
+  slug: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export class EntryValue {
   readonly content: string;
   readonly createdAt: string;
