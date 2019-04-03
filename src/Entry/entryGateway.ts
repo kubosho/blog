@@ -1,11 +1,9 @@
-import { Nullable, isNull } from 'option-t/lib/Nullable/Nullable';
-import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
-import { ContentfulClientApi, Entry, EntryCollection } from 'contentful';
-// @ts-ignore
-import { default as marked } from 'marked';
+import { Nullable, isNotNull } from 'option-t/lib/Nullable/Nullable';
+import { ContentfulClientApi, EntryCollection } from 'contentful';
 
 import { Memoization } from '../Application/memoization';
-import { ContentfulCustomEntryFields, EntryPlainObject, EntryValue } from './entryValue';
+import { toEntryPlainObject, toEntryValue } from './entryResponseConverter';
+import { ContentfulCustomEntryFields, EntryValue } from './entryValue';
 
 type EntriesMemoization = Memoization<
   EntryCollection<ContentfulCustomEntryFields>,
@@ -36,13 +34,15 @@ class EntryGatewayImpl {
       return;
     }
 
-    let values = this._memoize.get(res);
+    const valuesCache = this._memoize.get(res);
 
-    if (isNull(values)) {
-      values = res.items.map(createEntryValue);
-      this._memoize.set(res, values);
+    if (isNotNull(valuesCache)) {
+      return valuesCache;
     }
 
+    const entryObjects = res.items.map(({ sys, fields }) => toEntryPlainObject(sys, fields));
+    const values = entryObjects.map(toEntryValue);
+    this._memoize.set(res, values);
     return values;
   }
 }
@@ -53,35 +53,4 @@ export function createEntryGateway(
 ): EntryGateway {
   const g = new EntryGatewayImpl(client, memoize);
   return g;
-}
-
-function createEntryValue(item: Entry<ContentfulCustomEntryFields>): EntryValue {
-  const { sys, fields } = item;
-
-  const content = marked(fields.content);
-  const createdAt = unwrapOrFromUndefinable(fields.publishedAt, sys.createdAt);
-  const excerpt = createExcerptText(fields);
-
-  const o: EntryPlainObject = {
-    ...sys,
-    ...fields,
-    content,
-    createdAt,
-    excerpt,
-  };
-  const v = new EntryValue(o);
-
-  return v;
-}
-
-function createExcerptText(fields: ContentfulCustomEntryFields): string {
-  const excerpt = fields.excerpt;
-  const contentExcerpt = stripParagraphElement(marked(fields.content.split('\n')[0]));
-
-  const r = unwrapOrFromUndefinable(excerpt, contentExcerpt);
-  return r;
-}
-
-function stripParagraphElement(content: string): string {
-  return content.replace(/<\/?p>/g, '');
 }
