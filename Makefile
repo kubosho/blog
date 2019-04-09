@@ -3,6 +3,7 @@ NPM_BIN_DIR := $(NPM_MOD_DIR)/.bin
 
 SRC_DIR := $(CURDIR)/src
 DIST_DIR := $(CURDIR)/dist
+TOOLS_DIR := $(CURDIR)/tools
 ASSETS_DIR := $(CURDIR)/assets
 
 ####################################
@@ -154,3 +155,10 @@ copy_scripts:
 .PHONY: serve
 serve:
 	node --require dotenv/config $(DIST_DIR)/index.js
+
+####################################
+# Generate RSS
+####################################
+.PHONY: generate_rss ## RSS feed generator.
+generate_rss:
+	node --require dotenv/config $(TOOLS_DIR)/rss/generateRSS.js
