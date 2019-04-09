@@ -33,7 +33,6 @@
   "devDependencies": {
     "@babel/cli": "7.4.3",
     "@babel/core": "7.4.3",
-    "@babel/plugin-transform-modules-commonjs": "7.4.3",
     "@babel/preset-react": "7.0.0",
     "@types/dotenv": "6.1.1",
     "@types/marked": "0.6.5",
