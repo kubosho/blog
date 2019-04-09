@@ -10,7 +10,6 @@ ASSETS_DIR := $(CURDIR)/assets
 # Command definition
 ####################################
 AVA := $(NPM_BIN_DIR)/ava
-BABEL := $(NPM_BIN_DIR)/babel
 CPX := $(NPM_BIN_DIR)/cpx
 POSTCSS := $(NPM_BIN_DIR)/postcss
 PRETTIER := $(NPM_BIN_DIR)/prettier
@@ -20,7 +19,6 @@ TSLINT := $(NPM_BIN_DIR)/tslint
 
 ifeq ($(OS),Windows_NT)
 	AVA = $(NPM_BIN_DIR)/ava.cmd
-	BABEL = $(NPM_BIN_DIR)/babel.cmd
 	CPX = $(NPM_BIN_DIR)/cpx.cmd
 	POSTCSS := $(NPM_BIN_DIR)/postcss.cmd
 	PRETTIER := $(NPM_BIN_DIR)/prettier.cmd
