@@ -3,6 +3,7 @@ NPM_BIN_DIR := $(NPM_MOD_DIR)/.bin
 
 SRC_DIR := $(CURDIR)/src
 DIST_DIR := $(CURDIR)/dist
+TOOLS_DIR := $(CURDIR)/tools
 ASSETS_DIR := $(CURDIR)/assets
 
 ####################################
@@ -65,21 +66,12 @@ clean_dist:
 build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
 
 .PHONY: build_script
-build_script: FILES := $(DIST_DIR)/*.js $(DIST_DIR)/**/*.js $(DIST_DIR)/**/**/*.js
-build_script: BUILD_TARGETS := $(wildcard $(FILES))
 build_script:
 	$(TSC)
-	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
-
-.PHONY: compile_typescript_for_test
-compile_typescript_for_test:
-	$(TSC) --project tsconfig_test.json
 
 .PHONY: build_script_for_test
-build_script_for_test: FILES := $(SRC_DIR)/*.js $(SRC_DIR)/**/*.js $(SRC_DIR)/**/**/*.js
-build_script_for_test: BUILD_TARGETS := $(wildcard $(FILES))
 build_script_for_test:
-	$(foreach target, $(BUILD_TARGETS), $(BABEL) $(target) --out-dir $(dir $(target));)
+	$(TSC) --project tsconfig_test.json
 
 .PHONY: build_style
 build_style:
@@ -102,7 +94,6 @@ build_nginx:
 .PHONY: test
 test: ## Execute test cases.
 	$(MAKE) clean_for_test && \
-	$(MAKE) compile_typescript_for_test && \
 	$(MAKE) build_script_for_test && \
 	$(AVA)
 
@@ -154,3 +145,10 @@ copy_scripts:
 .PHONY: serve
 serve:
 	node --require dotenv/config $(DIST_DIR)/index.js
+
+####################################
+# Generate RSS
+####################################
+.PHONY: generate_rss ## RSS feed generator.
+generate_rss:
+	node --require dotenv/config $(TOOLS_DIR)/rss/generateRSS.js

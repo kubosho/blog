@@ -9,15 +9,25 @@ export interface ContentfulCustomEntryFields {
   publishedAt?: string;
 }
 
-export interface EntryPlainObject {
+export interface EntryResponse {
   content: string;
-  createdAt: string;
   excerpt: string;
   id: string;
   slug: string;
   title: string;
+  createdAt: string;
   updatedAt: string;
   publishedAt?: string;
+}
+
+export interface EntryPlainObject {
+  content: string;
+  excerpt: string;
+  id: string;
+  slug: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class EntryValue {
