@@ -63,7 +63,7 @@ clean_dist:
 # Build
 ####################################
 .PHONY: build
-build: clean build_script build_style build_nginx copy ## Building scripts and stylesheets.
+build: clean build_script build_style build_nginx ## Building scripts and stylesheets.
 
 .PHONY: build_script
 build_script:
@@ -143,12 +143,21 @@ copy_scripts:
 # Serve
 ####################################
 .PHONY: serve
-serve:
+serve: ## Blog serving.
 	node --require dotenv/config $(DIST_DIR)/index.js
 
 ####################################
 # Generate RSS
 ####################################
-.PHONY: generate_rss ## RSS feed generator.
-generate_rss:
+.PHONY: generate_rss
+generate_rss: ## RSS feed generator.
 	node --require dotenv/config $(TOOLS_DIR)/rss/generateRSS.js
+
+####################################
+# Generate blog contents
+####################################
+.PHONY: generate_blog
+generate_blog: ## Blog generator.
+	$(MAKE) build -j && \
+	$(MAKE) copy -j && \
+	$(MAKE) generate_rss -j
