@@ -1,9 +1,9 @@
 import { Routes } from 'universal-router';
 
 import { ENTRY_PATH, ENTRY_SLUG_PATH, PRIVACY_PATH } from '../Application/paths';
-import { TopHandler } from '../Page/Top/TopHandler';
-import { EntryHandler } from '../Page/Entry/EntryHandler';
-import { PrivacyHandler } from '../Page/Privacy/PrivacyHandler';
+import { TopHandler } from '../Page/Top/topHandler';
+import { EntryHandler } from '../Page/Entry/entryHandler';
+import { PrivacyHandler } from '../Page/Privacy/privacyHandler';
 
 // tslint:disable-next-line no-empty
 function noop() {}
