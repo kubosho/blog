@@ -3,7 +3,9 @@ import { renderToString } from 'react-dom/server';
 import { Undefinable } from 'option-t/lib/Undefinable/Undefinable';
 import { Context } from 'universal-router';
 
-import { FoundationContainer } from '../../Foundation/FoundationContainer';
+import { Root } from '../../Application/Root';
+import { Head } from '../../Application/Head';
+import { Body } from '../../Application/Body';
 import { SITE_TITLE } from '../../Application/constants';
 import { EntryValue } from '../../Entry/entryValue';
 import { entryGateway } from '../../Entry/entryContext';
@@ -26,9 +28,12 @@ export const EntryHandler = async (context: Context): Promise<string> => {
   const entry: Undefinable<EntryValue> = entries.find(e => e.slug === params.slug);
   const title = `${entry.title} · ${SITE_TITLE}`;
   const component = (
-    <FoundationContainer title={title}>
-      <EntryComponent entry={entry} />
-    </FoundationContainer>
+    <Root>
+      <Head title={title} />
+      <Body>
+        <EntryComponent entry={entry} />
+      </Body>
+    </Root>
   );
 
   const r = renderToString(component);
