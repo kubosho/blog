@@ -1,15 +1,20 @@
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import { FoundationContainer } from '../../Foundation/FoundationContainer';
+import { Root } from '../../Application/Root';
+import { Head } from '../../Application/Head';
+import { Body } from '../../Application/Body';
 import { SITE_TITLE } from '../../Application/constants';
 import { PrivacyComponent } from './PrivacyComponent';
 
 export const PrivacyHandler = async () => {
   const component = (
-    <FoundationContainer title={SITE_TITLE}>
-      <PrivacyComponent />
-    </FoundationContainer>
+    <Root>
+      <Head title={SITE_TITLE} />
+      <Body>
+        <PrivacyComponent />
+      </Body>
+    </Root>
   );
 
   const r = renderToString(component);
