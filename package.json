@@ -22,7 +22,7 @@
     "contentful": "7.5.0",
     "dotenv": "7.0.0",
     "marked": "0.6.2",
-    "option-t": "19.2.0",
+    "option-t": "19.2.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "7.0.2",
