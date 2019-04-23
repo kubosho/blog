@@ -36,7 +36,7 @@
     "@babel/preset-react": "7.0.0",
     "@types/dotenv": "6.1.1",
     "@types/marked": "0.6.5",
-    "@types/react": "16.8.2",
+    "@types/react": "16.8.14",
     "@types/react-dom": "16.8.0",
     "@types/react-redux": "7.0.8",
     "ava": "1.4.1",
