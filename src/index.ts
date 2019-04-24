@@ -1,38 +1,13 @@
-import { ServerResponse, createServer, IncomingMessage } from 'http';
-import { extname as getExtName } from 'path';
-import { parse as parseURL } from 'url';
-
+import { mapOrForUndefinable } from 'option-t/lib/Undefinable/mapOr';
 import { createRouter } from './Router/router';
 import { routes } from './Router/routes';
-import { EXTENSIONS } from './extensions';
-import { renderAsset } from './renderAsset';
+import { AppServer } from './appServer';
 
-const PORT = process.env.PORT || 8080;
+const PORT = mapOrForUndefinable(process.env.PORT, 8080, p => Number(p));
 
 function main() {
-  const server = createServer();
   const router = createRouter(routes);
-
-  server.on('request', async (req: IncomingMessage, res: ServerResponse) => {
-    const url = parseURL(req.url);
-    const pathname = url.pathname;
-    const ext = getExtName(pathname);
-
-    if (isAssetsPath(ext)) {
-      renderAsset(__dirname, pathname, req, res);
-      return;
-    }
-
-    try {
-      const val = await router.resolve({ pathname });
-      res.write(val);
-      res.end();
-    } catch (err) {
-      // tslint:disable-next-line no-console
-      console.error(`${pathname} is not found.`);
-      res.end();
-    }
-  });
+  const server = new AppServer(router);
 
   if (process.env.RELEASE_CHANNEL === 'local') {
     server.listen(PORT);
@@ -42,15 +17,3 @@ function main() {
 }
 
 main();
-
-function isAssetsPath(path: string): boolean {
-  const assetExts = [
-    EXTENSIONS.CSS,
-    EXTENSIONS.JPEG,
-    EXTENSIONS.GIF,
-    EXTENSIONS.PNG,
-    EXTENSIONS.WEBP,
-    EXTENSIONS.SVG,
-  ];
-  return assetExts.some(ext => ext === path);
-}
