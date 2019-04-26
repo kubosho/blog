@@ -18,8 +18,12 @@ export const EntryComponent = ({ entry }: Props): JSX.Element => {
     <React.Fragment>
       <HeaderComponent />
       <article className="com-Entry-EntryComponent-article" key={entry.id}>
-        <h1 className="com-Entry-EntryComponent-article__title">{entry.title}</h1>
-        <time dateTime={createdAt}>{timeValue}</time>
+        <header className="com-Entry-EntryComponent-article__header">
+          <h1 className="com-Entry-EntryComponent-article__title">{entry.title}</h1>
+          <time className="com-Entry-EntryComponent-article__time" dateTime={createdAt}>
+            {timeValue}
+          </time>
+        </header>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </article>
       <FooterComponent />
