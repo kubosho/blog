@@ -3,7 +3,7 @@ import * as React from 'react';
 import { EntryValue } from '../../Entry/entryValue';
 import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
-import { convertHumanReadableJST } from '../../convertHumanReadableTime';
+import { convertHumanReadableJST } from '../../humanReadableTimeConverter';
 
 export interface TopComponentProps {
   entries: ReadonlyArray<EntryValue>;
