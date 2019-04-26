@@ -2,10 +2,26 @@
   padding: 0 1rem;
   max-width: var(--page-max-width);
 }
-@media (min-width: 62.5em) {
+.com-Entry-EntryComponent-article__header {
+  position: relative;
+}
+@media (min-width: 50em) {
   .com-Entry-EntryComponent-article {
     padding: 0;
     margin: 0 auto;
+  }
+}
+@media (min-width: 70em) {
+  .com-Entry-EntryComponent-article__header {
+    padding-left: calc(var(--space) * 4);
+    border-left: calc(var(--border-size) * 4) solid var(--color-main);
+  }
+
+  .com-Entry-EntryComponent-article__time {
+    position: absolute;
+    top: 0;
+    right: calc(100% + calc(var(--space) * 6));
+    border-top: 0;
   }
 }
 
