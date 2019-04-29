@@ -1,18 +1,18 @@
 import * as React from 'react';
+import { unwrapOrFromNullable } from 'option-t/lib/Nullable/unwrapOr';
 
 import { EntryValue } from '../../Entry/entryValue';
 import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
-import { convertHumanReadableJST } from '../../convertHumanReadableTime';
+import { PublishedDate } from '../Common/components/PublishedDate';
 
 interface Props {
   entry: EntryValue;
 }
 
 export const EntryComponent = ({ entry }: Props): JSX.Element => {
-  const { content, createdAt } = entry;
-  const dateValue = new Date(createdAt);
-  const timeValue = convertHumanReadableJST(dateValue);
+  const { content, createdAt, publishdAt } = entry;
+  const date = unwrapOrFromNullable(publishdAt, createdAt);
 
   return (
     <React.Fragment>
@@ -20,9 +20,9 @@ export const EntryComponent = ({ entry }: Props): JSX.Element => {
       <article className="com-Entry-EntryComponent-article" key={entry.id}>
         <header className="com-Entry-EntryComponent-article__header">
           <h1 className="com-Entry-EntryComponent-article__title">{entry.title}</h1>
-          <time className="com-Entry-EntryComponent-article__time" dateTime={createdAt}>
-            {timeValue}
-          </time>
+          <span className="com-Entry-EntryComponent-article__time">
+            <PublishedDate createdAt={date} />
+          </span>
         </header>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </article>
