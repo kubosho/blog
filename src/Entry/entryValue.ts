@@ -1,4 +1,6 @@
+import { Nullable } from 'option-t/lib/Nullable/Nullable';
 import { unwrapMaybe } from 'option-t/lib/Maybe/unwrap';
+import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
 
 export interface ContentfulCustomEntryFields {
   content: string;
@@ -28,6 +30,7 @@ export interface EntryPlainObject {
   title: string;
   createdAt: string;
   updatedAt: string;
+  publishedAt?: string;
 }
 
 export class EntryValue {
@@ -38,6 +41,7 @@ export class EntryValue {
   readonly slug: string;
   readonly title: string;
   readonly updatedAt: string;
+  readonly publishdAt?: Nullable<string>;
 
   constructor(param: EntryPlainObject) {
     this.content = unwrapMaybe(param.content);
@@ -47,5 +51,6 @@ export class EntryValue {
     this.slug = unwrapMaybe(param.slug);
     this.title = unwrapMaybe(param.title);
     this.updatedAt = unwrapMaybe(param.updatedAt);
+    this.publishdAt = unwrapOrFromUndefinable(param.publishedAt, null);
   }
 }
