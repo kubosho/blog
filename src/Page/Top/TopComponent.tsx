@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { unwrapOrFromNullable } from 'option-t/lib/Nullable/unwrapOr';
 
 import { EntryValue } from '../../Entry/entryValue';
 import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
-import { convertHumanReadableJST } from '../../humanReadableTimeConverter';
+import { PublishedDate } from '../Common/components/PublishedDate';
 
 export interface TopComponentProps {
   entries: ReadonlyArray<EntryValue>;
@@ -15,16 +16,15 @@ export const TopComponent = ({ entries }: TopComponentProps): JSX.Element => (
 
     <h2 className="com-Top-TopComponent-articles-title">最近の記事</h2>
     {entries.map(entry => {
-      const { createdAt, excerpt, id, slug, title } = entry;
-      const dateValue = new Date(createdAt);
-      const timeValue = convertHumanReadableJST(dateValue);
+      const { createdAt, excerpt, id, slug, title, publishdAt } = entry;
+      const date = unwrapOrFromNullable(publishdAt, createdAt);
 
       return (
         <section className="com-Top-TopComponent-article" key={id}>
           <h1 className="com-Top-TopComponent-article__title">
             <a href={`/entry/${slug}`}>{title}</a>
           </h1>
-          <time dateTime={createdAt}>{timeValue}</time>
+          <PublishedDate createdAt={date} />
           <p dangerouslySetInnerHTML={{ __html: excerpt }} />
         </section>
       );
