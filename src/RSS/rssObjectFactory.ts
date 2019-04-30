@@ -29,7 +29,7 @@ export function createRSSObject(entries: ReadonlyArray<EntryValue>): RSSObject {
     return {
       title: entry.title,
       description: entry.excerpt,
-      pubDate: entry.createdAt.toString(),
+      pubDate: entry.createdAt,
       link,
     };
   });
