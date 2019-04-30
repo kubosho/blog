@@ -1,8 +1,6 @@
-import { Nullable } from 'option-t/lib/Nullable/Nullable';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from '../Application/constants';
 import { ENTRY_PATH } from '../Application/paths';
 import { EntryValue } from '../Entry/entryValue';
-import { entryGateway } from '../Entry/entryContext';
 
 export type RSSObject = {
   channel: {
@@ -18,15 +16,7 @@ export type RSSObject = {
   }>;
 };
 
-export async function createRSSObject(): Promise<RSSObject> {
-  let entries: Nullable<ReadonlyArray<EntryValue>> = null;
-
-  try {
-    entries = await entryGateway.fetchAllEntries();
-  } catch (err) {
-    throw new Error(err);
-  }
-
+export function createRSSObject(entries: ReadonlyArray<EntryValue>): RSSObject {
   const channel = {
     title: SITE_TITLE,
     link: SITE_URL,
@@ -39,7 +29,7 @@ export async function createRSSObject(): Promise<RSSObject> {
     return {
       title: entry.title,
       description: entry.excerpt,
-      pubDate: entry.createdAt.toString(),
+      pubDate: entry.createdAt,
       link,
     };
   });
