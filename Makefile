@@ -47,12 +47,6 @@ init: ## Install dependencies.
 .PHONY: clean
 clean: clean_dist ## Clean up before building the code.
 
-.PHONY: clean_for_test
-clean_for_test:
-	$(RIMRAF) \
-	{$(SRC_DIR)/*.js,$(SRC_DIR)/**/*.js,$(SRC_DIR)/**/**/*.js} \
-	{!$(SRC_DIR)/test_*.js,!$(SRC_DIR)/**/test_*.js,!$(SRC_DIR)/**/**/test_*.js}
-
 .PHONY: clean_dist
 clean_dist:
 	$(RIMRAF) $(DIST_DIR)/*
@@ -91,12 +85,11 @@ build_nginx:
 ####################################
 .PHONY: test
 test: ## Execute test cases.
-	$(MAKE) clean_for_test && \
 	$(MAKE) build_script_for_test && \
 	$(AVA)
 
 .PHONY: update_snapshots
-update_snapshots: clean_for_test build_script_for_test
+update_snapshots: build_script_for_test
 	$(AVA) --update-snapshots
 
 ####################################
