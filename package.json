@@ -19,7 +19,7 @@
   "homepage": "https://github.com/kubosho/blog#readme",
   "private": true,
   "dependencies": {
-    "contentful": "7.5.0",
+    "contentful": "7.5.1",
     "dotenv": "7.0.0",
     "luxon": "1.12.1",
     "marked": "0.6.2",
