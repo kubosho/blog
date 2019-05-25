@@ -1,4 +1,4 @@
-FROM openresty/openresty:1.13.6.2-alpine
+FROM openresty/openresty:1.15.8.1-alpine
 
 ENV PATH $PATH:/usr/sbin/
 
