@@ -23,7 +23,7 @@
     "dotenv": "8.0.0",
     "luxon": "1.12.1",
     "marked": "0.6.2",
-    "option-t": "19.2.1",
+    "option-t": "20.0.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "7.0.3",
