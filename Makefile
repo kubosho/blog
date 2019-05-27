@@ -149,6 +149,8 @@ generate_rss: ## RSS feed generator.
 ####################################
 .PHONY: generate_blog
 generate_blog: ## Blog generator.
-	$(MAKE) build -j && \
+	$(MAKE) clean -j && \
+	$(MAKE) build_script -j && \
+	$(MAKE) build_style -j && \
 	$(MAKE) copy -j && \
 	$(MAKE) generate_rss -j
