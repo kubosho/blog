@@ -11,9 +11,5 @@
 .gitignore
 CONTRIBUTING.md
 Dockerfile
-Makefile
 README.md
 node_modules/
-postcss.config.js
-dist/
-tsconfig.json

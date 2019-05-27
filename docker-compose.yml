@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+
+  blog_reverse_proxy:
+    build:
+      context: ./
+      dockerfile: ./docker/reverse_proxy/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    container_name: blog_reverse_proxy
+    depends_on:
+      - blog_backend
+
+  blog_backend:
+    build:
+      context: ./
+      dockerfile: ./docker/backend/Dockerfile
+    ports:
+      - "8080:8080"
+      # for inspector
+      - "9229:9229"
+    container_name: blog_backend
