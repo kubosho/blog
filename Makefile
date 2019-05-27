@@ -71,7 +71,7 @@ build_style:
 
 .PHONE: build_nginx
 build_nginx: PORT ?= 80
-build_nginx: PROXY_PASS ?= http://localhost:8080
+build_nginx: PROXY_PASS ?= http://blog_backend:8080
 build_nginx: NGINX_WORKERS ?= 1
 build_nginx:
 	PORT=$(PORT) \
