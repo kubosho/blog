@@ -13,6 +13,3 @@ CONTRIBUTING.md
 Dockerfile
 README.md
 node_modules/
-postcss.config.js
-dist/
-tsconfig.json
