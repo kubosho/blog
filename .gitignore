@@ -8,6 +8,7 @@ src/**/**/*.js
 !src/**/**/test_*.js
 dist/
 nginx/
+temp/
 !tools/nginx/
 .env
 
