@@ -5,6 +5,7 @@ SRC_DIR := $(CURDIR)/src
 DIST_DIR := $(CURDIR)/dist
 TOOLS_DIR := $(CURDIR)/tools
 ASSETS_DIR := $(CURDIR)/assets
+INFRASTRUCTURE_DIR := $(CURDIR)/infrastructure
 
 ####################################
 # Command definition
@@ -154,3 +155,27 @@ generate_blog: ## Blog generator.
 	$(MAKE) build_style -j && \
 	$(MAKE) copy -j && \
 	$(MAKE) generate_rss -j
+
+####################################
+# Docker
+####################################
+# Building Docker image
+.PHONY: build_docker_image
+build_docker_image: ## Building Docker image.
+	docker-compose build
+
+# Served on Docker compose
+.PHONY: docker_compose_up
+docker_compose_up: ## Served on Docker compose.
+	docker-compose up
+
+####################################
+# Infrastructure
+####################################
+.PHONY: plan_infrastructure
+plan_infrastructure: ## Planning infrastructure
+	cd $(INFRASTRUCTURE_DIR); terraform plan; cd -
+
+.PHONY: apply_infrastructure
+apply_infrastructure: ## Applied infrastructure
+	cd $(INFRASTRUCTURE_DIR); terraform apply; cd -
