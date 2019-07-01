@@ -154,3 +154,16 @@ generate_blog: ## Blog generator.
 	$(MAKE) build_style -j && \
 	$(MAKE) copy -j && \
 	$(MAKE) generate_rss -j
+
+####################################
+# Docker
+####################################
+# Building Docker image
+.PHONY: build_docker_image
+build_docker_image: ## Building Docker image.
+	docker-compose build
+
+# Served on Docker compose
+.PHONY: docker_compose_up
+docker_compose_up: ## Served on Docker compose.
+	docker-compose up
