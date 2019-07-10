@@ -2,9 +2,6 @@ FROM openresty/openresty:1.13.6.2-stretch
 
 WORKDIR /blog
 
-COPY ./nginx/nginx.conf /blog/nginx/nginx.conf
-COPY ./dist /blog/www
-
 ENV NGINX_USER nginx
 
 RUN useradd -m ${NGINX_USER}

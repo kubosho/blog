@@ -7,6 +7,8 @@ TOOLS_DIR := $(CURDIR)/tools
 ASSETS_DIR := $(CURDIR)/assets
 INFRASTRUCTURE_DIR := $(CURDIR)/infrastructure
 
+PWD_WIN := $(shell echo $(PWD) | sed -e 's/^\/mnt//')
+
 ####################################
 # Command definition
 ####################################
@@ -162,12 +164,31 @@ generate_blog: ## Blog generator.
 # Building Docker image
 .PHONY: build_docker_image
 build_docker_image: ## Building Docker image.
-	docker-compose build
+	docker build --tag=kubosho/blog_backend ./docker/backend/ && \
+	docker build --tag=kubosho/blog_reverse_proxy ./docker/reverse_proxy/
 
 # Served on Docker compose
 .PHONY: docker_compose_up
 docker_compose_up: ## Served on Docker compose.
 	docker-compose up
+
+# Served on Docker compose for WSL
+.PHONY: docker_compose_up_wsl
+docker_compose_up_wsl: ## Served on Docker compose for WSL.
+	PWD=$(PWD_WIN) && \
+	docker-compose up
+
+# Run backend (use Docker compose) for WSL
+.PHONY: docker_compose_run_backend_wsl
+docker_compose_run_backend_wsl: ## Run backend (use Docker compose) for WSL.
+	PWD=$(PWD_WIN) && \
+	docker-compose run backend bash
+
+# Run reverse proxy (use Docker compose) for WSL
+.PHONY: docker_compose_run_reverse_proxy_wsl
+docker_compose_run_reverse_proxy_wsl: ## Run reverse proxy (use Docker compose) for WSL.
+	PWD=$(PWD_WIN) && \
+	docker-compose run reverse_proxy bash
 
 ####################################
 # Infrastructure
