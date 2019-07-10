@@ -1,11 +1,10 @@
 version: '3.3'
 
 services:
-
   reverse_proxy:
-    build:
-      context: ./
-      dockerfile: ./docker/reverse_proxy/Dockerfile
+    image: kubosho/blog_reverse_proxy
+    volumes:
+      - ${PWD}/nginx:/blog/nginx
     ports:
       - "80:80"
       - "443:443"
@@ -14,9 +13,9 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./
-      dockerfile: ./docker/backend/Dockerfile
+    image: kubosho/blog_backend
+    volumes:
+      - ${PWD}:/blog
     ports:
       - "8080:8080"
       # for inspector
