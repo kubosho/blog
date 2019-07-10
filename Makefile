@@ -164,7 +164,8 @@ generate_blog: ## Blog generator.
 # Building Docker image
 .PHONY: build_docker_image
 build_docker_image: ## Building Docker image.
-	docker-compose build
+	docker build --tag=kubosho/blog_backend ./docker/backend/ && \
+	docker build --tag=kubosho/blog_reverse_proxy ./docker/reverse_proxy/
 
 # Served on Docker compose
 .PHONY: docker_compose_up
