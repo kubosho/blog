@@ -7,6 +7,11 @@ TOOLS_DIR := $(CURDIR)/tools
 ASSETS_DIR := $(CURDIR)/assets
 INFRASTRUCTURE_DIR := $(CURDIR)/infrastructure
 
+DOCKER_HUB_USER := kubosho
+DOCKER_IMAGE_TAG_PREFIX := blog_
+DOCKER_IMAGE_BACKEND := backend
+DOCKER_IMAGE_REVERSE_PROXY := reverse_proxy
+
 PWD_WIN := $(shell echo $(PWD) | sed -e 's/^\/mnt//')
 
 ####################################
@@ -164,8 +169,8 @@ generate_blog: ## Blog generator.
 # Building Docker image
 .PHONY: build_docker_image
 build_docker_image: ## Building Docker image.
-	docker build --tag=kubosho/blog_backend ./docker/backend/ && \
-	docker build --tag=kubosho/blog_reverse_proxy ./docker/reverse_proxy/
+	docker build --tag=$(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_BACKEND) ./docker/backend/ && \
+	docker build --tag=$(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_REVERSE_PROXY) ./docker/reverse_proxy/
 
 # Served on Docker compose
 .PHONY: docker_compose_up
@@ -182,13 +187,13 @@ docker_compose_up_wsl: ## Served on Docker compose for WSL.
 .PHONY: docker_compose_run_backend_wsl
 docker_compose_run_backend_wsl: ## Run backend (use Docker compose) for WSL.
 	PWD=$(PWD_WIN) && \
-	docker-compose run backend bash
+	docker-compose run $(DOCKER_IMAGE_BACKEND) bash
 
 # Run reverse proxy (use Docker compose) for WSL
 .PHONY: docker_compose_run_reverse_proxy_wsl
 docker_compose_run_reverse_proxy_wsl: ## Run reverse proxy (use Docker compose) for WSL.
 	PWD=$(PWD_WIN) && \
-	docker-compose run reverse_proxy bash
+	docker-compose run $(DOCKER_IMAGE_REVERSE_PROXY) bash
 
 ####################################
 # Infrastructure
