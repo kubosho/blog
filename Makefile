@@ -172,6 +172,12 @@ build_docker_image: ## Building Docker image.
 	docker build --tag=$(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_BACKEND) ./docker/backend/ && \
 	docker build --tag=$(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_REVERSE_PROXY) ./docker/reverse_proxy/
 
+# Publish to DockerHub
+.PHONY: push_docker_image
+push_docker_image: ## Publish to DockerHub.
+	docker push $(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_BACKEND) && \
+	docker push $(DOCKER_HUB_USER)/$(DOCKER_IMAGE_TAG_PREFIX)$(DOCKER_IMAGE_REVERSE_PROXY)
+
 # Served on Docker compose
 .PHONY: docker_compose_up
 docker_compose_up: ## Served on Docker compose.
