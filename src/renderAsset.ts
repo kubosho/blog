@@ -27,20 +27,23 @@ export function renderAsset(
 
   statFile(filename, (err, stat) => {
     if (err) {
-      res.end(err);
+      // tslint:disable-next-line: no-console
+      console.error(err.message);
+      res.end();
       return;
     }
 
     const mtime = new Date(stat.mtimeMs).toUTCString();
     if (req.headers['if-modified-since'] === mtime) {
       res.statusCode = 304;
-      return res.end();
+      res.end();
+      return;
     }
 
     readFile(filename, (e, data) => {
-      if (err) {
+      if (e) {
         res.statusCode = 500;
-        res.end(`Error getting the file: ${err}.`);
+        res.end(`Error getting the file: ${e}.`);
       } else {
         // based on the URL path, extract the file extention. e.g. .js, .doc, ...
         const ext = parsePath(pathname).ext;
