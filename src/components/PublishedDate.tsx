@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formatYYMMDDString, parseISOFormat } from '../../../Application/date';
+import { formatYYMMDDString, parseISOFormat } from '../Application/date';
 
 type Props = {
   createdAt: string;

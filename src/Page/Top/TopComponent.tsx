@@ -4,7 +4,7 @@ import { unwrapOrFromNullable } from 'option-t/lib/Nullable/unwrapOr';
 import { EntryValue } from '../../Entry/entryValue';
 import { HeaderComponent } from '../../Application/HeaderComponent';
 import { FooterComponent } from '../../Application/FooterComponent';
-import { PublishedDate } from '../Common/components/PublishedDate';
+import { PublishedDate } from '../../components/PublishedDate';
 
 export interface TopComponentProps {
   entries: ReadonlyArray<EntryValue>;
