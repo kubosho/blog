@@ -3,7 +3,7 @@ dist: xenial
 language: node_js
 
 node_js:
-    - "11"
+    - "12"
 
 env:
     - YARNPKG_VERSION=1.12.3
