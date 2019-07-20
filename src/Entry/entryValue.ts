@@ -1,6 +1,6 @@
 import { unwrapMaybe } from 'option-t/lib/Maybe/unwrap';
 import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
-import { parseISOFormat } from '../Application/date';
+import { convertISOStringToDateTime } from '../Application/date';
 
 export interface ContentfulCustomEntryFields {
   content: string;
@@ -46,8 +46,8 @@ export class EntryValue {
     const c = unwrapOrFromUndefinable(param.publishedAt, param.createdAt);
     const u = unwrapMaybe(param.updatedAt);
 
-    const createdAt = parseISOFormat(c).toMillis();
-    const updatedAt = parseISOFormat(u).toMillis();
+    const createdAt = convertISOStringToDateTime(c).toMillis();
+    const updatedAt = convertISOStringToDateTime(u).toMillis();
 
     this.content = unwrapMaybe(param.content);
     this.excerpt = unwrapMaybe(param.excerpt);
