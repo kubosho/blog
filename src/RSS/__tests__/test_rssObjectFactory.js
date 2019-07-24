@@ -7,17 +7,17 @@ import { createRSSObject } from '../rssObjectFactory';
 test('rssObjectFactory()', t => {
   const mockEntryPlainObject = {
     content: 'test content',
-    createdAt: '2016-12-20T10:43:35.772Z',
     excerpt: 'test content',
     id: '5KsDBWseXY6QegucYAoacS',
     slug: 'hello-world',
     title: 'Hello, world!',
+    createdAt: '2016-12-20T10:43:35.772Z',
     updatedAt: '2016-12-20T10:43:35.772Z',
   };
   const mockEntries = [
     mockEntryPlainObject,
-    { ...mockEntryPlainObject, publishedAt: '2016-12-20T10:43+09:00' },
-    { ...mockEntryPlainObject, publishedAt: '2019-04-01T09:00+09:00' },
+    { ...mockEntryPlainObject, publishedAt: '2016-12-20T10:43Z' },
+    { ...mockEntryPlainObject, publishedAt: '2019-04-01T09:00Z' },
   ].map(entry => new EntryValue(entry));
   const actual = createRSSObject(mockEntries);
   const { channel, items } = actual;
