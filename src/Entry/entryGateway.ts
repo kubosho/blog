@@ -41,8 +41,10 @@ class EntryGatewayImpl {
     }
 
     const entryObjects = res.items.map(({ sys, fields }) => toEntryPlainObject(sys, fields));
-    const values = entryObjects.map(toEntryValue);
+    const values = entryObjects.map(toEntryValue).sort((e1, e2) => e2.createdAt - e1.createdAt);
+
     this._memoize.set(res, values);
+
     return values;
   }
 }

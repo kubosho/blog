@@ -1,6 +1,6 @@
-import { Nullable } from 'option-t/lib/Nullable/Nullable';
 import { unwrapMaybe } from 'option-t/lib/Maybe/unwrap';
 import { unwrapOrFromUndefinable } from 'option-t/lib/Undefinable/unwrapOr';
+import { convertISOStringToDateTime } from '../Application/date';
 
 export interface ContentfulCustomEntryFields {
   content: string;
@@ -35,22 +35,26 @@ export interface EntryPlainObject {
 
 export class EntryValue {
   readonly content: string;
-  readonly createdAt: string;
   readonly excerpt: string;
   readonly id: string;
   readonly slug: string;
   readonly title: string;
-  readonly updatedAt: string;
-  readonly publishdAt?: Nullable<string>;
+  readonly createdAt: number;
+  readonly updatedAt: number;
 
   constructor(param: EntryPlainObject) {
+    const c = unwrapOrFromUndefinable(param.publishedAt, param.createdAt);
+    const u = unwrapMaybe(param.updatedAt);
+
+    const createdAt = convertISOStringToDateTime(c).toMillis();
+    const updatedAt = convertISOStringToDateTime(u).toMillis();
+
     this.content = unwrapMaybe(param.content);
-    this.createdAt = unwrapMaybe(param.createdAt);
     this.excerpt = unwrapMaybe(param.excerpt);
     this.id = unwrapMaybe(param.id);
     this.slug = unwrapMaybe(param.slug);
     this.title = unwrapMaybe(param.title);
-    this.updatedAt = unwrapMaybe(param.updatedAt);
-    this.publishdAt = unwrapOrFromUndefinable(param.publishedAt, null);
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 }

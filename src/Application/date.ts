@@ -1,11 +1,23 @@
 import { DateTime } from 'luxon';
 
-export function parseISOFormat(dateISOString: string): DateTime {
-  const dt = DateTime.fromISO(dateISOString);
-  return dt;
+export function convertISOStringToDateTime(dateISOString: string): DateTime {
+  const r = DateTime.fromISO(dateISOString);
+  return r;
 }
 
-export function formatYYMMDDString(dateTime: DateTime): string {
-  const dt = dateTime.toFormat('yyyy/MM/dd');
-  return dt;
+export function formatISOString(dateTimeMilliseconds: number): string {
+  const utc = convertUTCDateTime(dateTimeMilliseconds);
+  const r = utc.toISO();
+  return r;
+}
+
+export function formatYYMMDDString(dateTimeMilliseconds: number): string {
+  const utc = convertUTCDateTime(dateTimeMilliseconds);
+  const r = utc.toFormat('yyyy/MM/dd');
+  return r;
+}
+
+function convertUTCDateTime(dateTimeMilliseconds: number): DateTime {
+  const r = DateTime.fromMillis(dateTimeMilliseconds).toUTC();
+  return r;
 }

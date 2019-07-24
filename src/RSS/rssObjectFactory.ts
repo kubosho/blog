@@ -1,6 +1,7 @@
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from '../Application/constants';
 import { ENTRY_PATH } from '../Application/paths';
 import { EntryValue } from '../Entry/entryValue';
+import { formatISOString } from '../Application/date';
 
 export type RSSObject = {
   channel: {
@@ -25,11 +26,12 @@ export function createRSSObject(entries: ReadonlyArray<EntryValue>): RSSObject {
 
   const items = entries.map(entry => {
     const link = `${SITE_URL}/${ENTRY_PATH}/${entry.slug}`;
+    const pubDate = formatISOString(entry.createdAt);
 
     return {
       title: entry.title,
       description: entry.excerpt,
-      pubDate: entry.createdAt,
+      pubDate,
       link,
     };
   });
