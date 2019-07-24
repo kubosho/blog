@@ -8,13 +8,14 @@ test('EntryComponent', t => {
   const renderer = new ShallowRenderer();
   const mockEntryPlainObject = {
     content: 'test content',
-    createdAt: '2016-12-20T10:43:35.772Z',
     excerpt: 'test content',
     id: '5KsDBWseXY6QegucYAoacS',
     slug: 'hello-world',
     title: 'Hello, world!',
+    createdAt: '2016-12-20T10:43:35.772Z',
     updatedAt: '2016-12-20T10:43:35.772Z',
   };
+
   const mockEntryValue = new EntryValue(mockEntryPlainObject);
   const component = <EntryComponent entry={mockEntryValue} />;
 

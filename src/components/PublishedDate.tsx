@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { formatYYMMDDString, parseISOFormat } from '../Application/date';
+import { formatYYMMDDString, formatISOString } from '../Application/date';
 
 type Props = {
-  createdAt: string;
+  createdAt: number;
 };
 
 export const PublishedDate = (props: Props) => {
   const { createdAt } = props;
-  const timeValue = formatYYMMDDString(parseISOFormat(createdAt));
-  return <time dateTime={createdAt}>{timeValue}</time>;
+  const dateTime = formatISOString(createdAt);
+  const timeValue = formatYYMMDDString(createdAt);
+
+  const e = <time dateTime={dateTime}>{timeValue}</time>;
+
+  return e;
 };

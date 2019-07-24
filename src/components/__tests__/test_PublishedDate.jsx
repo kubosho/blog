@@ -5,7 +5,7 @@ import { PublishedDate } from '../PublishedDate';
 
 test('PublishedDate', t => {
   const renderer = new ShallowRenderer();
-  const mockCreatedAt = '2016-12-20T10:43:35.772Z';
+  const mockCreatedAt = 1482230615772;
   const component = <PublishedDate createdAt={mockCreatedAt} />;
 
   renderer.render(component);

@@ -1,4 +1,4 @@
-# Snapshot report for `src/Page/Common/components/__tests__/test_PublishedDate.jsx`
+# Snapshot report for `src/components/__tests__/test_PublishedDate.jsx`
 
 The actual snapshot is saved in `test_PublishedDate.jsx.snap`.
 
